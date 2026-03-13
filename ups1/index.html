@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesando tu acceso...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .upsell-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px 20px 40px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 1. O Topo - A Ilusão de Processamento */
+        .progress-box {
+            width: 100%;
+            max-width: 350px;
+            margin: 10px 0 35px 0;
+            text-align: center;
+        }
+        .progress-text {
+            font-size: 12px;
+            color: #555555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .progress-bar-bg {
+            background-color: #e5e7eb;
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .progress-bar-fill {
+            background-color: #10b981; /* Verde */
+            height: 100%;
+            width: 85%;
+            border-radius: 10px;
+            animation: pulse-bar 2s infinite ease-in-out;
+        }
+        @keyframes pulse-bar {
+            0% { opacity: 0.85; }
+            50% { opacity: 1; }
+            100% { opacity: 0.85; }
+        }
+
+        /* 2. A Headline Principal - Gatilho de Alerta */
+        .headline {
+            font-size: 26px;
+            font-weight: 800;
+            color: #991b1b; /* Vermelho escuro */
+            text-align: center;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        @media (min-width: 768px) {
+            .headline {
+                font-size: 34px;
+            }
+        }
+
+        .subtext {
+            font-size: 15px;
+            color: #374151;
+            text-align: center;
+            margin: 0 0 40px 0;
+            font-weight: 500;
+            line-height: 1.4;
+            max-width: 650px;
+        }
+
+        /* 3. A Sub-headline - A Ponte para o Vídeo */
+        .sub-headline {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000000;
+            text-align: center;
+            margin: 0 0 25px 0;
+            line-height: 1.4;
+            max-width: 600px;
+            letter-spacing: -0.02em;
+        }
+
+        /* 4. O Player de Vídeo */
+        .video-box {
+            width: 100%;
+            margin-bottom: 10px; /* Pouquíssimo espaço abaixo para não denunciar */
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 5. A Zona de Decisão */
+        .decision-zone {
+            display: none; /* Começa oculta */
+            width: 100%;
+            max-width: 600px;
+            margin-top: 50px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="upsell-container">
+        <!-- 1. O Topo (A Ilusão de Processamento) -->
+        <div class="progress-box">
+            <div class="progress-text">Paso 1 completado. Procesando tu acceso...</div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <!-- 2. A Headline Principal (O Gatilho de Alerta) -->
+        <h1 class="headline">¡ATENCIÓN! No cierres esta página — estamos creando tu acceso.</h1>
+        <p class="subtext">Cerrar esta ventana ahora puede causar errores en la entrega de tu pedido.</p>
+
+        <!-- 3. A Sub-headline (A Ponte para o Vídeo) -->
+        <p class="sub-headline">Mientras nuestro sistema prepara tu área de miembros, mira tu primera clase obligatoria aquí abajo:</p>
+
+        <!-- 4. O Player de Vídeo (O Centro de Conversão) -->
+        <div class="video-box">
+            <vturb-smartplayer id="vid-69b4199b005f4e6dadaab9ef" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> 
+            <script type="text/javascript"> 
+                var s=document.createElement("script"); 
+                s.src="https://scripts.converteai.net/9cf4b9da-cd91-4d11-964d-2a519c60679c/players/69b4199b005f4e6dadaab9ef/v4/player.js", 
+                s.async=!0,
+                document.head.appendChild(s); 
+            </script>
+        </div>
+
+        <!-- 5. A Zona de Decisão (Aparece Apenas aos 7:35) -->
+        <div class="decision-zone" id="decision-zone">
+            <!-- HOTMART - Sales Funnel Widget -->
+            <!--- sales funnel container --->
+            <div id="hotmart-sales-funnel"></div>
+
+            <!--- script load and setup --->
+            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+            <script>
+            if (typeof checkoutElements !== 'undefined') {
+                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+            } else {
+                window.addEventListener('load', function() {
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+                });
+            }
+            </script>
+            <!-- HOTMART - Sales Funnel Widget -->
+        </div>
+
+    </div>
+
+    <!-- Script de Delay (7 minutos e 35 segundos = 455 segundos) -->
+    <script>
+        const DELAY_IN_SECONDS = 455;
+        const DELAY_IN_MS = DELAY_IN_SECONDS * 1000;
+
+        setTimeout(function() {
+            var decisionZone = document.getElementById('decision-zone');
+            if(decisionZone) {
+                decisionZone.style.display = 'block';
+            }
+        }, DELAY_IN_MS);
+    </script>
+</body>
+</html>

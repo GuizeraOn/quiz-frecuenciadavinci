@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Espera! Oferta Especial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: 'Roboto', 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 1. O Topo (A Barra de Alerta) */
+        .alert-bar {
+            width: 100%;
+            background-color: #dc2626; /* Vermelho sólido */
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: pulse-bg 2s infinite;
+        }
+
+        @keyframes pulse-bg {
+            0% { background-color: #dc2626; }
+            50% { background-color: #ef4444; }
+            100% { background-color: #dc2626; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 2. A Headline Principal */
+        .headline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #000000;
+            text-align: center;
+            margin: 0 0 30px 0;
+            line-height: 1.3;
+        }
+        @media (min-width: 768px) {
+            .headline { font-size: 36px; }
+        }
+
+        /* 3. O Corpo do Texto */
+        .body-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .body-text p {
+            margin: 0 0 15px 0;
+        }
+
+        .highlight-red {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .highlight-bold {
+            font-weight: 700;
+            color: #000000;
+        }
+
+        /* 4. O Bloco da Oferta */
+        .offer-block {
+            background-color: #f3f4f6;
+            border: 2px dashed #9ca3af;
+            border-radius: 8px;
+            padding: 30px 20px;
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .offer-text {
+            font-size: 18px;
+            color: #111111;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .offer-list {
+            text-align: left;
+            display: inline-block;
+            margin: 0 auto 20px auto;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .offer-list div {
+            margin-bottom: 8px;
+        }
+
+        .offer-list span {
+            color: #10b981;
+            margin-right: 8px;
+        }
+
+        .price-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: #000000;
+            margin: 20px 0 10px 0;
+        }
+
+        .strike {
+            text-decoration: line-through;
+            color: #ef4444;
+            margin-right: 5px;
+        }
+
+        .new-price {
+            color: #10b981;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .guarantee-text {
+            font-size: 14px;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* 5. A Zona de Decisão */
+        .decision-zone {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. O Topo (A Barra de Alerta) -->
+    <div class="alert-bar">
+        ¡ESPERA! NO CIERRES ESTA PÁGINA AÚN...
+    </div>
+
+    <div class="container">
+        <!-- 2. A Headline Principal -->
+        <h1 class="headline">Entiendo perfectamente. $17 dólares puede estar fuera de tu presupuesto hoy.</h1>
+
+        <!-- 3. O Corpo do Texto -->
+        <div class="body-text">
+            <p>Sabemos que eliminar el zumbido para siempre es tu mayor prioridad.</p>
+            
+            <p>Pero como te expliqué hace un momento, si tu nervio auditivo está inflamado por años de estrés, la señal de La Frecuencia Da Vinci chocará contra una pared y no llegará a tu cerebro.</p>
+            
+            <p>No quiero que el dinero sea la razón por la que tu tratamiento fracase. No después de haber dado el paso más importante hoy.</p>
+            
+            <p>Por eso, voy a hacer algo que mi equipo financiero detesta.</p>
+            
+            <p class="highlight-bold" style="font-size: 20px;">Voy a darte acceso completo al <span class="highlight-red">Reset del Nervio Auditivo</span> con un <span class="highlight-red">50% de DESCUENTO EXCLUSIVO.</span></p>
+        </div>
+
+        <!-- 4. O Bloco da Oferta -->
+        <div class="offer-block">
+            <div class="offer-text">
+                <span class="highlight-bold">Te llevas exactamente el mismo protocolo</span> para limpiar las neurotoxinas de tu oído interno...
+            </div>
+            
+            <div class="offer-list">
+                <div><span>+</span> Todos los bonos de regalo</div>
+                <div><span>+</span> La misma garantía incondicional de 30 días</div>
+            </div>
+
+            <div class="price-text">
+                En lugar de pagar <span class="strike">$17.00</span>, hoy tu inversión será un pago único de solo <span class="new-price">$8.50.</span>
+            </div>
+
+            <div class="guarantee-text">
+                (Sin mensualidades, sin cargos ocultos. Acceso inmediato).
+            </div>
+        </div>
+
+        <!-- 5. A Zona de Decisão (Botões Widget Hotmart) -->
+        <div class="decision-zone">
+            <!-- HOTMART - Sales Funnel Widget -->
+            <!--- sales funnel container --->
+            <div id="hotmart-sales-funnel"></div>
+
+            <!--- script load and setup --->
+            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+            <script>
+            if (typeof checkoutElements !== 'undefined') {
+                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+            } else {
+                window.addEventListener('load', function() {
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+                });
+            }
+            </script>
+            <!-- HOTMART - Sales Funnel Widget -->
+        </div>
+    </div>
+
+</body>
+</html>
