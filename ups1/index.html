@@ -28,76 +28,59 @@
             align-items: center;
         }
 
-        /* 1. O Topo - A Ilusão de Processamento */
-        .progress-box {
+        /* 1. La Barra de Alerta (O "Disfarce") */
+        .alert-bar {
             width: 100%;
-            max-width: 350px;
-            margin: 10px 0 35px 0;
+            background-color: #fee2e2; /* Rojo claro suave */
+            border: 2px solid #ef4444;
+            padding: 25px 20px;
+            border-radius: 15px;
             text-align: center;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .progress-text {
-            font-size: 12px;
-            color: #555555;
-            margin-bottom: 8px;
-            font-weight: 500;
+        .alert-bar strong {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            color: #991b1b;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1.2;
         }
-        .progress-bar-bg {
+        .alert-bar p {
+            margin: 0 0 20px 0;
+            font-size: 15px;
+            color: #7f1d1d;
+            font-weight: 600;
+        }
+        .progress-container {
             background-color: #e5e7eb;
             height: 12px;
             border-radius: 10px;
             overflow: hidden;
             width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
             box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
         }
-        .progress-bar-fill {
+        .progress-bar {
             background-color: #10b981; /* Verde */
             height: 100%;
-            width: 85%;
+            width: 85%; /* Simula carregamento travado em 85% */
             border-radius: 10px;
             animation: pulse-bar 2s infinite ease-in-out;
         }
         @keyframes pulse-bar {
-            0% { opacity: 0.85; }
+            0% { opacity: 0.8; }
             50% { opacity: 1; }
-            100% { opacity: 0.85; }
+            100% { opacity: 0.8; }
         }
 
-        /* 2. A Headline Principal - Gatilho de Alerta */
-        .headline {
-            font-size: 26px;
-            font-weight: 800;
-            color: #991b1b; /* Vermelho escuro */
-            text-align: center;
-            margin: 0 0 10px 0;
-            line-height: 1.2;
-            text-transform: uppercase;
-        }
         @media (min-width: 768px) {
-            .headline {
-                font-size: 34px;
+            .alert-bar strong {
+                font-size: 26px;
             }
-        }
-
-        .subtext {
-            font-size: 15px;
-            color: #374151;
-            text-align: center;
-            margin: 0 0 40px 0;
-            font-weight: 500;
-            line-height: 1.4;
-            max-width: 650px;
-        }
-
-        /* 3. A Sub-headline - A Ponte para o Vídeo */
-        .sub-headline {
-            font-size: 18px;
-            font-weight: 700;
-            color: #000000;
-            text-align: center;
-            margin: 0 0 25px 0;
-            line-height: 1.4;
-            max-width: 600px;
-            letter-spacing: -0.02em;
         }
 
         /* 4. O Player de Vídeo */
@@ -126,20 +109,17 @@
 <body>
 
     <div class="upsell-container">
-        <!-- 1. O Topo (A Ilusão de Processamento) -->
-        <div class="progress-box">
-            <div class="progress-text">Paso 1 completado. Procesando tu acceso...</div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
+        <!-- 1. La Barra de Alerta (O "Disfarce") -->
+        <div class="alert-bar">
+            <strong>⚠️ ¡ATENCIÓN! No cierres esta página — estamos creando tu acceso.</strong>
+            <p>Cerrar esta ventana puede causar errores en tu orden.</p>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
             </div>
         </div>
 
-        <!-- 2. A Headline Principal (O Gatilho de Alerta) -->
-        <h1 class="headline">¡ATENCIÓN! No cierres esta página — estamos creando tu acceso.</h1>
-        <p class="subtext">Cerrar esta ventana ahora puede causar errores en la entrega de tu pedido.</p>
-
         <!-- 3. A Sub-headline (A Ponte para o Vídeo) -->
-        <p class="sub-headline">Mientras nuestro sistema prepara tu área de miembros, mira tu primera clase obligatoria aquí abajo:</p>
+        <p class="sub-headline" style="font-size: 18px; font-weight: 700; color: #000000; text-align: center; margin: 0 0 25px 0; line-height: 1.4; max-width: 600px; letter-spacing: -0.02em;">Mientras nuestro sistema prepara tu área de miembros, mira tu primera clase obligatoria aquí abajo:</p>
 
         <!-- 4. O Player de Vídeo (O Centro de Conversão) -->
         <div class="video-box">
@@ -176,7 +156,7 @@
 
     <!-- Script de Delay (7 minutos e 35 segundos = 455 segundos) -->
     <script>
-        const DELAY_IN_SECONDS = 455;
+        const DELAY_IN_SECONDS = 235;
         const DELAY_IN_MS = DELAY_IN_SECONDS * 1000;
 
         setTimeout(function() {

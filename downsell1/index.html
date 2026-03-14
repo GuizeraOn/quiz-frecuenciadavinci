@@ -6,12 +6,12 @@
     <title>¡Espera! Oferta Especial</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #ffffff;
             color: #111111;
-            font-family: 'Roboto', 'Montserrat', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -19,68 +19,64 @@
             align-items: center;
         }
 
-        /* 1. O Topo (A Barra de Alerta) */
+        /* Header / Faixa no topo */
         .alert-bar {
             width: 100%;
-            background-color: #dc2626; /* Vermelho sólido */
+            background-color: #dc2626; /* Rojo sólido */
             color: #ffffff;
             text-align: center;
             padding: 15px 10px;
-            font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: 18px;
-            letter-spacing: 1px;
+            font-size: 16px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            animation: pulse-bg 2s infinite;
+            animation: pulse-light 2s infinite ease-in-out;
+            box-sizing: border-box;
         }
 
-        @keyframes pulse-bg {
-            0% { background-color: #dc2626; }
-            50% { background-color: #ef4444; }
-            100% { background-color: #dc2626; }
+        @keyframes pulse-light {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.9; }
         }
 
         .container {
             width: 100%;
-            max-width: 650px;
+            max-width: 700px;
             padding: 40px 20px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
 
-        /* 2. A Headline Principal */
+        /* H1 - Título Principal */
         .headline {
-            font-family: 'Montserrat', sans-serif;
             font-size: 28px;
             font-weight: 800;
             color: #000000;
-            text-align: center;
-            margin: 0 0 30px 0;
-            line-height: 1.3;
-        }
-        @media (min-width: 768px) {
-            .headline { font-size: 36px; }
+            line-height: 1.2;
+            margin: 20px 0 30px 0;
         }
 
-        /* 3. O Corpo do Texto */
+        @media (min-width: 768px) {
+            .headline {
+                font-size: 36px;
+            }
+        }
+
+        /* Texto do Corpo */
         .body-text {
             font-size: 18px;
             line-height: 1.6;
-            color: #333333;
-            text-align: center;
-            margin-bottom: 20px;
-            width: 100%;
+            color: #374151;
+            margin-bottom: 30px;
+            max-width: 650px;
         }
 
         .body-text p {
-            margin: 0 0 15px 0;
-        }
-
-        .highlight-red {
-            color: #dc2626;
-            font-weight: 700;
+            margin-bottom: 20px;
         }
 
         .highlight-bold {
@@ -88,127 +84,90 @@
             color: #000000;
         }
 
-        /* 4. O Bloco da Oferta */
-        .offer-block {
-            background-color: #f3f4f6;
-            border: 2px dashed #9ca3af;
-            border-radius: 8px;
-            padding: 30px 20px;
+        /* Bloco de Preço / Oferta */
+        .price-box {
+            background-color: #f9fafb;
+            border: 2px dashed #d1d5db;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
             width: 100%;
-            margin: 30px 0;
-            text-align: center;
             box-sizing: border-box;
         }
 
-        .offer-text {
-            font-size: 18px;
-            color: #111111;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .offer-list {
-            text-align: left;
-            display: inline-block;
-            margin: 0 auto 20px auto;
-            font-size: 18px;
-            font-weight: 700;
-            color: #1f2937;
-        }
-
-        .offer-list div {
-            margin-bottom: 8px;
-        }
-
-        .offer-list span {
-            color: #10b981;
-            margin-right: 8px;
-        }
-
-        .price-text {
-            font-size: 22px;
-            font-weight: 700;
-            color: #000000;
-            margin: 20px 0 10px 0;
-        }
-
-        .strike {
+        .old-price {
             text-decoration: line-through;
-            color: #ef4444;
-            margin-right: 5px;
+            color: #9ca3af;
+            font-size: 20px;
         }
 
         .new-price {
-            color: #10b981;
-            font-size: 28px;
+            font-size: 48px;
             font-weight: 800;
+            color: #10b981;
+            display: block;
+            margin: 10px 0;
         }
 
-        .guarantee-text {
+        .guarantee {
             font-size: 14px;
             color: #6b7280;
-            font-style: italic;
-            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
         }
 
-        /* 5. A Zona de Decisão */
+        /* Widget Hotmart */
         .decision-zone {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. O Topo (A Barra de Alerta) -->
+    <!-- Header / Faixa no topo -->
     <div class="alert-bar">
-        ¡ESPERA! NO CIERRES ESTA PÁGINA AÚN...
+        🚨 ¡ESPERA! Esta es tu última oportunidad antes de cerrar tu pedido...
     </div>
 
     <div class="container">
-        <!-- 2. A Headline Principal -->
-        <h1 class="headline">Entiendo perfectamente. $17 dólares puede estar fuera de tu presupuesto hoy.</h1>
+        <!-- H1 - Título Principal -->
+        <h1 class="headline">
+            Entiendo. Quizás $17 dólares no estaba en tu presupuesto hoy...
+        </h1>
 
-        <!-- 3. O Corpo do Texto -->
+        <!-- Texto do Corpo -->
         <div class="body-text">
-            <p>Sabemos que eliminar el zumbido para siempre es tu mayor prioridad.</p>
-            
-            <p>Pero como te expliqué hace un momento, si tu nervio auditivo está inflamado por años de estrés, la señal de La Frecuencia Da Vinci chocará contra una pared y no llegará a tu cerebro.</p>
-            
-            <p>No quiero que el dinero sea la razón por la que tu tratamiento fracase. No después de haber dado el paso más importante hoy.</p>
-            
-            <p>Por eso, voy a hacer algo que mi equipo financiero detesta.</p>
-            
-            <p class="highlight-bold" style="font-size: 20px;">Voy a darte acceso completo al <span class="highlight-red">Reset del Nervio Auditivo</span> con un <span class="highlight-red">50% de DESCUENTO EXCLUSIVO.</span></p>
+            <p>Pero sé lo importante que es para ti silenciar ese zumbido lo más rápido posible.</p>
+
+            <p>Como te expliqué, el cortisol acumulado en tu cerebro va a hacer que la Frecuencia Da Vinci tarde mucho más en penetrar y darte resultados. No quiero que el dinero sea un obstáculo para tu recuperación total.</p>
+
+            <p>Por eso, he decidido hacer algo que mi equipo financiero me desaconsejó, y que solo verás en esta página por única vez:</p>
+
+            <p class="highlight-bold">Voy a asumir parte del costo por ti. Te daré acceso completo e inmediato al Acelerador de Silencio Nocturno (incluyendo la guía Reconectados) con un 50% DE DESCUENTO ESTRICTO.</p>
+
+            <p>En lugar de los $17 que pagan los demás, hoy puedes llevarte el protocolo completo por solo $8.50. Un único pago, sin cargos extra, y con la misma garantía de 30 días.</p>
+
+            <p class="highlight-bold">Es menos de lo que cuesta un desayuno, a cambio de limpiar tu cerebro y acelerar tu silencio.</p>
         </div>
 
-        <!-- 4. O Bloco da Oferta -->
-        <div class="offer-block">
-            <div class="offer-text">
-                <span class="highlight-bold">Te llevas exactamente el mismo protocolo</span> para limpiar las neurotoxinas de tu oído interno...
-            </div>
-            
-            <div class="offer-list">
-                <div><span>+</span> Todos los bonos de regalo</div>
-                <div><span>+</span> La misma garantía incondicional de 30 días</div>
-            </div>
-
-            <div class="price-text">
-                En lugar de pagar <span class="strike">$17.00</span>, hoy tu inversión será un pago único de solo <span class="new-price">$8.50.</span>
-            </div>
-
-            <div class="guarantee-text">
-                (Sin mensualidades, sin cargos ocultos. Acceso inmediato).
+        <!-- Bloco de Preço -->
+        <div class="price-box">
+            <span class="old-price">Precio Normal: $17.00</span>
+            <span class="new-price">$8.50</span>
+            <div class="guarantee">
+                🛡️ Garantía total de 30 días incluida
             </div>
         </div>
 
-        <!-- 5. A Zona de Decisão (Botões Widget Hotmart) -->
+        <!-- Botão Widget Hotmart -->
         <div class="decision-zone">
             <!-- HOTMART - Sales Funnel Widget -->
-            <!--- sales funnel container --->
             <div id="hotmart-sales-funnel"></div>
 
-            <!--- script load and setup --->
             <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
             <script>
             if (typeof checkoutElements !== 'undefined') {
@@ -219,8 +178,8 @@
                 });
             }
             </script>
-            <!-- HOTMART - Sales Funnel Widget -->
         </div>
+
     </div>
 
 </body>
