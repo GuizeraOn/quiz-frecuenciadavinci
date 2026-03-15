@@ -4,38 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Front-End Cloaker (Lightweight Traffic Filter) -->
-    <script>
-        (function () {
-            const FAKE_URL = 'https://quizfrecuencia-davinci.vercel.app';
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // Bypass for owner testing: matches if URL has ?test=1
-            if (urlParams.get('test') === '1') return;
-
-            // 1. Device Detection (Mobile/Tablet vs Desktop)
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const isDesktop = !isMobile;
-
-            // 2. Localization Check (Brazil)
-            // Checks browser language and timezone settings
-            const lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-            const isBrazil = lang.includes('pt-br') || 
-                             tz.includes('Sao_Paulo') || 
-                             tz.includes('Brasilia') || 
-                             tz.includes('Fortaleza') ||
-                             tz.includes('Recife') ||
-                             tz.includes('Manaus');
-
-            // 3. Redirection Execution
-            // Redirect if user is on Desktop OR is identified as being in Brazil
-            if (isDesktop || isBrazil) {
-                window.location.replace(FAKE_URL);
-            }
-        })();
-    </script>
     <title>Quiz NeuroSilencio</title>
     <!-- SEO Optimization -->
     <meta name="description"
