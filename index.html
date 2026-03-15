@@ -564,6 +564,25 @@
         </footer>
     </div>
 
+    <!-- SCRIPT PONTE: REPASSE DE UTM PARA LINKS INTERNOS (QUIZ -> VSL) -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var urlParams = window.location.search;
+        if (urlParams) {
+            var ctaButtons = document.querySelectorAll("a[href*='vsl/index.html'], a.cta-button");
+            ctaButtons.forEach(function(button) {
+                var currentHref = button.getAttribute("href");
+                if (currentHref && !currentHref.includes("hotmart")) {
+                    // Ajuste técnico: se não houver '?', usamos '?', se houver, usamos '&'
+                    var separator = currentHref.includes("?") ? "&" : "?";
+                    var newHref = currentHref + separator + urlParams.substring(1);
+                    button.setAttribute("href", newHref);
+                }
+            });
+        }
+    });
+    </script>
+
     <script src="script.js"></script>
 </body>
 
