@@ -60,15 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetCard.classList.add('active');
             }, 50);
 
-            // Esconde headline em qualquer passo diferente do 1
-            const mainHeadline = document.getElementById('mainHeadline');
-            if (mainHeadline) {
-                if (targetId === 'step1') {
-                    mainHeadline.style.display = 'block';
-                } else {
-                    mainHeadline.style.display = 'none';
-                }
-            }
+
 
             // Atualiza imagens de idade baseado no gênero antes de exibir (step 9)
             if (targetId === 'step9' && userAnswers.gender) {
