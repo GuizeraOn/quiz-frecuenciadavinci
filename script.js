@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Configurações e Variáveis Globais
-    const totalSteps = 10; // Passos de pergunta/interação antes do loading
+    const totalSteps = 12; // Passos de pergunta/interação antes do loading
     let currentStepIndex = 1;
     let userAnswers = {};
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         saveWifiAnswer(wifiAnswer);
                     }
 
-                    if (stepCard.id === 'step8') {
+                    if (stepCard.id === 'step9') {
                         const btnText = button.textContent.trim().toLowerCase();
                         userAnswers.gender = btnText.includes('mujer') ? 'f' : 'm';
                     } else if (stepCard.id === 'step2') {
@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-            // Atualiza imagens de idade baseado no gênero antes de exibir (step 9)
-            if (targetId === 'step9' && userAnswers.gender) {
+            // Atualiza imagens de idade baseado no gênero antes de exibir (step 10)
+            if (targetId === 'step10' && userAnswers.gender) {
                 const g = userAnswers.gender;
                 const images = targetCard.querySelectorAll('.age-avatar');
                 if (images.length === 6) {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProgress(targetId);
 
             // Checar comportamentos especiais baseados na tela destino
-            if (targetId === 'step11-loading') {
+            if (targetId === 'step13-loading') {
                 startAnalysisSim();
             }
         }
@@ -138,11 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btnStep5.addEventListener('click', () => goToStep('step6'));
 
-        // Step 10
-        const step10Checkboxes = document.querySelectorAll('#step10 input[type="checkbox"]');
-        const btnStep10 = document.getElementById('btnStep10');
+        // Step 11
+        const step11Checkboxes = document.querySelectorAll('#step11 input[type="checkbox"]');
+        const btnStep11 = document.getElementById('btnStep11');
 
-        step10Checkboxes.forEach(cb => {
+        step11Checkboxes.forEach(cb => {
             cb.addEventListener('change', () => {
                 // Atualiza estilo visual do checkbox
                 const parentLabel = cb.closest('.custom-checkbox');
@@ -152,12 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     parentLabel.classList.remove('checked-style');
                 }
 
-                const anyChecked = Array.from(step10Checkboxes).some(chk => chk.checked);
-                btnStep10.disabled = !anyChecked;
+                const anyChecked = Array.from(step11Checkboxes).some(chk => chk.checked);
+                btnStep11.disabled = !anyChecked;
             });
         });
 
-        btnStep10.addEventListener('click', () => goToStep('step11-loading'));
+        btnStep11.addEventListener('click', () => goToStep('step12'));
     }
 
     // Simulação da Análise de Dados (Página Final do Quiz)
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function finishAnalysis() {
         updateDynamicResults();
         setTimeout(() => {
-            goToStep('step12-result');
+            goToStep('step14-result');
         }, 500);
     }
 
