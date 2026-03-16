@@ -172,10 +172,10 @@
                 <div class="step-content">
                     <h2 class="main-question">¿El router de Wi-Fi de tu casa permanece encendido durante toda la noche mientras duermes?</h2>
                     <div class="options-list">
-                        <button class="option-btn next-step" data-target="step2">
+                        <button class="option-btn next-step" data-wifi="yes" data-target="step2">
                             ✅ Sí, nunca lo apago
                         </button>
-                        <button class="option-btn next-step" data-target="step2">
+                        <button class="option-btn next-step" data-wifi="no" data-target="step2">
                             ❌ No, lo apago al dormir
                         </button>
                     </div>
@@ -492,6 +492,8 @@
                             <div class="diagnosis-value highlight-green">Reversible</div>
                         </div>
                     </div>
+
+                    <div id="dynamic-wifi-alert" style="margin: 15px 0; border-radius: 8px; font-size: 16px; line-height: 1.5; display: none;"></div>
 
                     <div class="result-text text-left mb-8">
                         <p>Según tus respuestas, tu zumbido <strong>no se está generando en tu oído</strong> — presenta
