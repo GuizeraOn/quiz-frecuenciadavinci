@@ -67,12 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const g = userAnswers.gender;
                 const images = targetCard.querySelectorAll('.age-avatar');
                 if (images.length === 6) {
-                    images[0].src = `images/age_${g}_under_40.png`;
-                    images[1].src = `images/age_${g}_40_49.png`;
-                    images[2].src = `images/age_${g}_50_59.png`;
-                    images[3].src = `images/age_${g}_60_69.png`;
-                    images[4].src = `images/age_${g}_70_79.png`;
-                    images[5].src = `images/age_${g}_80_plus.png`;
+                    images[0].src = `images/age_${g}_under_40.webp`;
+                    images[1].src = `images/age_${g}_40_49.webp`;
+                    images[2].src = `images/age_${g}_50_59.webp`;
+                    images[3].src = `images/age_${g}_60_69.webp`;
+                    images[4].src = `images/age_${g}_70_79.webp`;
+                    images[5].src = `images/age_${g}_80_plus.webp`;
                 }
             }
 
