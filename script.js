@@ -211,28 +211,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateDynamicResults() {
-        // --- Texto dinâmico do parágrafo 1 (baseado na Q2 - tipo de zumbido) ---
+        const factorValue = document.getElementById('dynamic-factor-agravante');
         const par1 = document.getElementById('result-dynamic-p1');
 
-        let step2Text = "un sonido constante como el tuyo";
+        let step2Text = "sonido constante";
         if (userAnswers.step2Raw) {
-            if (userAnswers.step2Raw.includes('pitido')) step2Text = "un pitido agudo y constante como el tuyo";
-            else if (userAnswers.step2Raw.includes('grave') || userAnswers.step2Raw.includes('continuo')) step2Text = "un zumbido grave y continuo como el tuyo";
-            else if (userAnswers.step2Raw.includes('silbido')) step2Text = "un silbido que va y viene como el tuyo";
-            else if (userAnswers.step2Raw.includes('estática') || userAnswers.step2Raw.includes('chicharreo')) step2Text = "un sonido tipo estática como el tuyo";
-            else if (userAnswers.step2Raw.includes('mezcla')) step2Text = "esa mezcla de sonidos complejos que escuchas";
+            if (userAnswers.step2Raw.includes('pitido')) step2Text = "pitido agudo y constante";
+            else if (userAnswers.step2Raw.includes('grave') || userAnswers.step2Raw.includes('continuo')) step2Text = "zumbido grave y continuo";
+            else if (userAnswers.step2Raw.includes('silbido')) step2Text = "silbido que va y viene";
+            else if (userAnswers.step2Raw.includes('estática') || userAnswers.step2Raw.includes('chicharreo')) step2Text = "sonido tipo estática";
+            else if (userAnswers.step2Raw.includes('mezcla')) step2Text = "mezcla de sonidos complejos";
         }
 
         if (par1) {
-            par1.innerHTML = `Según tus respuestas, <strong>${step2Text}</strong> es uno de los patrones más claros de bloqueo gamma. Esto confirma que tu problema no está en tus oídos, sino en tu cerebro. Por eso las pastillas no te han funcionado.`;
+            par1.innerHTML = `Según tus respuestas, un <strong>${step2Text}</strong> es uno de los patrones más claros de <strong>bloqueo gamma de alta frecuencia</strong>. Esto confirma que tu problema no se está generando en tu oído, sino que es el mecanismo de filtrado natural de tu cerebro que se ha "apagado". Esto explica por qué los tratamientos convencionales no han funcionado: están atacando el órgano equivocado.`;
         }
-
-        // --- Factor agravante dinâmico (baseado na Q6 - momento do dia) ---
-        const factorValue = document.getElementById('dynamic-factor-agravante');
 
         if (factorValue && userAnswers.step6Raw) {
             if (userAnswers.step6Raw.includes('pantallas')) {
-                factorValue.textContent = "Sobrecarga electromagnética aguda (pantallas)";
+                factorValue.textContent = "Interferencia electromagnética aguda";
             } else if (userAnswers.step6Raw.includes('estrés') || userAnswers.step6Raw.includes('cansancio')) {
                 factorValue.textContent = "Sobrecarga de cortisol bloqueando ondas gamma";
             } else if (userAnswers.step6Raw.includes('silencio')) {
@@ -240,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (userAnswers.step6Raw.includes('despertar') || userAnswers.step6Raw.includes('mañana')) {
                 factorValue.textContent = "Hiperactividad neuronal matutina";
             } else {
-                factorValue.textContent = "Sobrecarga electromagnética bloqueando ondas gamma";
+                factorValue.textContent = "Disfunción de ondas gamma (Constante)";
             }
         }
     }
