@@ -34,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 8000);
     }
 
-    // Configuração do Botão Delay (Liberação da oferta aos 06:29 - 389 segundos)
-    const DELAY_MINUTES = 6;
-    const DELAY_SECONDS = 29;
+    // Configuração do Botão Delay (Liberação da oferta aos 05:54)
+    const DELAY_MINUTES = 5;
+    const DELAY_SECONDS = 54;
     const TOTAL_DELAY_MS = ((DELAY_MINUTES * 60) + DELAY_SECONDS) * 1000;
 
     const delayedOffer = document.getElementById('delayed-offer');
