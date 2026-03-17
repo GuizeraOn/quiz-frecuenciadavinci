@@ -211,26 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateDynamicResults() {
-        // Injeção de Alerta Wi-Fi Dinâmico
-        const wifiStatus = localStorage.getItem('wifi_status');
-        const wifiAlert = document.getElementById('dynamic-wifi-alert');
-
-        if (wifiAlert) {
-            if (wifiStatus === 'yes') {
-                wifiAlert.style.display = 'block';
-                wifiAlert.innerHTML = `<div style="background-color: rgba(255, 0, 0, 0.1); border-left: 4px solid #ff4444; padding: 12px; color: #ffffff;">
-                    <strong>⚠️ Alerta:</strong> Dejar tu router encendido está bombardeando tu cerebro con esmog electromagnético toda la noche, bloqueando tu capacidad de silenciar el zumbido.
-                </div>`;
-            } else if (wifiStatus === 'no') {
-                wifiAlert.style.display = 'block';
-                wifiAlert.innerHTML = `<div style="background-color: rgba(0, 255, 0, 0.1); border-left: 4px solid #00cc66; padding: 12px; color: #ffffff;">
-                    <strong>✅ Haces muy bien en apagar tu router.</strong> El problema es que el Wi-Fi de tus vecinos y las antenas 5G de la calle atraviesan las paredes de tu habitación y siguen bloqueando tus Ondas Gamma mientras duermes. Apagar el tuyo ya no es suficiente...
-                </div>`;
-            } else {
-                wifiAlert.style.display = 'none';
-            }
-        }
-
         // --- Texto dinâmico do parágrafo 1 (baseado na Q2 - tipo de zumbido) ---
         const par1 = document.getElementById('result-dynamic-p1');
 
