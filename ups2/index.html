@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paso 2 de 3 — Instrucción Vital</title>
+    <meta name="description" content="Instrucción vital para nuevos miembros del Protocolo de Reconstrucción Cognitiva.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset ── */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* ── 1. Header — Progress Bar ── */
+        .header {
+            width: 100%;
+            padding: 0;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 80%;
+            background: linear-gradient(90deg, #00CCCC, #00FFFF);
+            border-radius: 0 3px 3px 0;
+            animation: shimmer 2.5s infinite ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0%   { opacity: 0.85; }
+            50%  { opacity: 1; }
+            100% { opacity: 0.85; }
+        }
+
+        .step-label {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 12px 15px 0;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── 2. Container ── */
+        .page-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 15px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ── 3. Headline ── */
+        .urgency-headline {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.45;
+            margin: 22px 0 24px;
+            animation: pulse-text 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-text {
+            0%   { opacity: 0.8; }
+            50%  { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        /* ── 4. Video Player ── */
+        .video-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        /* ── 5. CTA Container (hidden initially) ── */
+        #cta-container {
+            display: none;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 40px;
+            animation: fadeSlideUp 1s ease forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── 6. Footer / Security Seals ── */
+        .security-footer {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 50px;
+            padding: 25px 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .seals {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .seal-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 500;
+        }
+
+        .seal-icon {
+            font-size: 16px;
+            opacity: 0.5;
+        }
+
+        .legal-links {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.25);
+            line-height: 1.8;
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .legal-links a:hover {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ── Mobile (< 600px) ── */
+        @media (max-width: 600px) {
+            .urgency-headline {
+                padding: 0 15px;
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header — Progress Bar -->
+    <header class="header">
+        <div class="progress-track">
+            <div class="progress-fill"></div>
+        </div>
+        <p class="step-label">Paso 2 de 3: Instrucción vital para nuevos miembros</p>
+    </header>
+
+    <div class="page-container">
+
+        <!-- 2. Urgency Headline -->
+        <h1 class="urgency-headline">
+            ⚠️ ATENCIÓN: No cierres esta página. Tu acceso se está procesando...
+        </h1>
+
+        <!-- 3. Video Player (VTurb) -->
+        <div class="video-wrapper">
+            <vturb-smartplayer id="vid-69b95086243e791f0735e4a9" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
+            <script type="text/javascript">
+                var s = document.createElement("script");
+                s.src = "https://scripts.converteai.net/9cf4b9da-cd91-4d11-964d-2a519c60679c/players/69b95086243e791f0735e4a9/v4/player.js";
+                s.async = true;
+                document.head.appendChild(s);
+            </script>
+        </div>
+
+        <!-- 4. CTA Container (Hotmart Widget — hidden until 3:54) -->
+        <div id="cta-container">
+            <!-- HOTMART - Sales Funnel Widget -->
+            <div id="hotmart-sales-funnel"></div>
+
+            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+            <script>
+                if (typeof checkoutElements !== 'undefined') {
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                } else {
+                    window.addEventListener('load', function () {
+                        checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                    });
+                }
+            </script>
+            <!-- END HOTMART -->
+        </div>
+
+        <!-- 5. Security Footer -->
+        <footer class="security-footer">
+            <div class="seals">
+                <span class="seal-item">
+                    <span class="seal-icon">🔒</span> Conexión cifrada SSL
+                </span>
+                <span class="seal-item">
+                    <span class="seal-icon">🛡️</span> Pago seguro Hotmart
+                </span>
+                <span class="seal-item">
+                    <span class="seal-icon">✅</span> Garantía de 30 días
+                </span>
+            </div>
+            <div class="legal-links">
+                <a href="#">Términos de Uso</a> &nbsp;|&nbsp; <a href="#">Política de Privacidad</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- 6. Delay Script — Show CTA at 03:54 (234 seconds) -->
+    <script>
+        (function () {
+            var DELAY_SECONDS = 234; // 3 minutes 54 seconds
+            setTimeout(function () {
+                var cta = document.getElementById('cta-container');
+                if (cta) {
+                    cta.style.display = 'block';
+
+                    // Smooth scroll to the widget
+                    cta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, DELAY_SECONDS * 1000);
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Espera! Descuento Especial del 50%</title>
+    <meta name="description" content="Oferta de rescate: última oportunidad para acceder al Protocolo de Reconstrucción Cognitiva con descuento del 50%.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset ── */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* ── 1. Alert Bar (Header) ── */
+        .alert-bar {
+            width: 100%;
+            background: linear-gradient(95deg, #b91c1c, #dc2626);
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 15px;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            animation: pulse-bar 2.5s infinite ease-in-out;
+        }
+
+        .alert-bar span {
+            color: #FFFF00;
+        }
+
+        @keyframes pulse-bar {
+            0%   { opacity: 0.88; }
+            50%  { opacity: 1; }
+            100% { opacity: 0.88; }
+        }
+
+        /* ── 2. Container ── */
+        .page-container {
+            width: 100%;
+            max-width: 620px;
+            padding: 30px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ── 3. Headline ── */
+        .main-headline {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .sub-headline {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.55;
+            margin-bottom: 32px;
+            max-width: 540px;
+        }
+
+        /* ── 4. Copy Body ── */
+        .copy-body {
+            width: 100%;
+            max-width: 540px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.82);
+            margin-bottom: 32px;
+        }
+
+        .copy-body p {
+            margin-bottom: 18px;
+        }
+
+        .copy-body strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .copy-body em {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFF00;
+            margin-bottom: 14px;
+        }
+
+        /* ── 5. Price Box ── */
+        .price-box {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 2px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 18px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .price-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .new-price {
+            font-size: 52px;
+            font-weight: 800;
+            color: #00FF00;
+            display: block;
+            line-height: 1.1;
+            margin-bottom: 6px;
+            text-shadow: 0 0 30px rgba(0, 255, 0, 0.25);
+        }
+
+        .price-note {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            font-weight: 500;
+        }
+
+        /* ── 6. Hotmart Widget ── */
+        .widget-zone {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 10px;
+        }
+
+        /* ── 7. Countdown Timer ── */
+        .countdown-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 28px;
+            padding: 12px 20px;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+        }
+
+        .countdown-icon {
+            font-size: 18px;
+        }
+
+        .countdown-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fca5a5;
+        }
+
+        #countdown-timer {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ef4444;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ── 8. Security Footer ── */
+        .security-footer {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 40px;
+            padding: 25px 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .seals {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .seal-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 500;
+        }
+
+        .seal-icon {
+            font-size: 16px;
+            opacity: 0.5;
+        }
+
+        .legal-links {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.25);
+            line-height: 1.8;
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .legal-links a:hover {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ── Divider ── */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 0 auto 28px;
+            border-radius: 2px;
+        }
+
+        /* ── Mobile (< 600px) ── */
+        @media (max-width: 600px) {
+            .main-headline {
+                font-size: 21px;
+                padding: 0 5px;
+            }
+            .sub-headline {
+                font-size: 15px;
+                padding: 0 5px;
+            }
+            .copy-body {
+                font-size: 15px;
+            }
+            .new-price {
+                font-size: 46px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Alert Bar (Header) -->
+    <div class="alert-bar">
+        🚨 <span>OFERTA DE RESCATE: ÚLTIMA OPORTUNIDAD</span>
+    </div>
+
+    <div class="page-container">
+
+        <!-- 2. Headline -->
+        <h1 class="main-headline">
+            ¡ESPERA! He desbloqueado un descuento del 50% para proteger tu cerebro hoy mismo.
+        </h1>
+
+        <!-- 3. Sub-headline -->
+        <p class="sub-headline">
+            Como médico, mi prioridad es tu salud, no el lucro. He aplicado un descuento especial del 50% por los próximos 5 minutos.
+        </p>
+
+        <!-- 4. Countdown Timer (5 minutes) -->
+        <div class="countdown-wrapper">
+            <span class="countdown-icon">⏱️</span>
+            <span class="countdown-text">Oferta expira en:</span>
+            <span id="countdown-timer">05:00</span>
+        </div>
+
+        <!-- 5. Persuasive Copy -->
+        <div class="copy-body">
+            <p class="section-title">¿Aún tienes dudas?</p>
+
+            <p>Entiendo que a veces el presupuesto puede ser ajustado. Pero <strong>las micro-lesiones en tu cerebro causadas por el zumbido no esperan</strong> a que el presupuesto mejore. Cada día que pasas sin regenerar tus neuronas, el riesgo de confusión mental aumenta.</p>
+
+            <p>He decidido hacer algo que mi equipo administrativo odia: <strong>Voy a subsidiar parte de tu acceso.</strong></p>
+
+            <p>Solo por ahora, puedes llevarte el <strong>Protocolo de Reconstrucción Cognitiva completo</strong>, con todos los bonos y la garantía de 100 dólares, por una inversión única de:</p>
+        </div>
+
+        <!-- 6. Price Box -->
+        <div class="price-box">
+            <span class="old-price">Precio normal: $27.00</span>
+            <span class="price-label">Solo hoy</span>
+            <span class="new-price">$13.50</span>
+            <span class="price-note">Pago único · Sin cargos recurrentes</span>
+        </div>
+
+        <p style="text-align: center; font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 30px; max-width: 480px; line-height: 1.6;">
+            Es menos de lo que cuesta un café con un bocadillo. Es un <strong style="color: #fff;">pago único</strong> para asegurar que tu mente se mantenga joven y funcional.
+        </p>
+
+        <div class="divider"></div>
+
+        <!-- 7. Hotmart Widget (Visible Instantly — NO DELAY) -->
+        <div class="widget-zone">
+            <!-- HOTMART - Sales Funnel Widget -->
+            <div id="hotmart-sales-funnel"></div>
+
+            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+            <script>
+                if (typeof checkoutElements !== 'undefined') {
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                } else {
+                    window.addEventListener('load', function () {
+                        checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                    });
+                }
+            </script>
+            <!-- END HOTMART -->
+        </div>
+
+        <!-- 8. Security Footer -->
+        <footer class="security-footer">
+            <div class="seals">
+                <span class="seal-item">
+                    <span class="seal-icon">🛡️</span> Garantía de 30 días
+                </span>
+                <span class="seal-item">
+                    <span class="seal-icon">🔒</span> Pago seguro Hotmart
+                </span>
+                <span class="seal-item">
+                    <span class="seal-icon">💯</span> Garantía de $100
+                </span>
+            </div>
+            <div class="legal-links">
+                <a href="#">Términos de Uso</a> &nbsp;|&nbsp; <a href="#">Política de Privacidad</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Countdown Timer Script (5 minutes) -->
+    <script>
+        (function () {
+            var totalSeconds = 5 * 60; // 5 minutes
+            var timerEl = document.getElementById('countdown-timer');
+
+            function updateTimer() {
+                if (totalSeconds <= 0) {
+                    timerEl.textContent = '00:00';
+                    timerEl.style.color = '#7f1d1d';
+                    return;
+                }
+                var minutes = Math.floor(totalSeconds / 60);
+                var seconds = totalSeconds % 60;
+                timerEl.textContent =
+                    String(minutes).padStart(2, '0') + ':' +
+                    String(seconds).padStart(2, '0');
+                totalSeconds--;
+                setTimeout(updateTimer, 1000);
+            }
+
+            updateTimer();
+        })();
+    </script>
+
+</body>
+</html>
