@@ -138,6 +138,25 @@ body {
     backdrop-filter: blur(10px);
 }
 
+/* Headline principal da primeira tela */
+.main-headline {
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ffffff, var(--accent-neon));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+@media (max-width: 639px) {
+    .main-headline {
+        font-size: 1.3rem;
+    }
+}
+
 /* Tipografia e Títulos */
 .small-header {
     font-size: 14px;
