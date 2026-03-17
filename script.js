@@ -231,33 +231,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const factorValue = document.querySelector('.diagnosis-row:nth-child(2) .diagnosis-value');
-        const par1 = document.querySelector('.result-text p:first-child');
+        // --- Texto dinâmico do parágrafo 1 (baseado na Q2 - tipo de zumbido) ---
+        const par1 = document.getElementById('result-dynamic-p1');
 
-        let step2Text = "un sonido constante";
+        let step2Text = "un sonido constante como el tuyo";
         if (userAnswers.step2Raw) {
             if (userAnswers.step2Raw.includes('pitido')) step2Text = "un pitido agudo y constante como el tuyo";
             else if (userAnswers.step2Raw.includes('grave') || userAnswers.step2Raw.includes('continuo')) step2Text = "un zumbido grave y continuo como el tuyo";
             else if (userAnswers.step2Raw.includes('silbido')) step2Text = "un silbido que va y viene como el tuyo";
-            else if (userAnswers.step2Raw.includes('estática')) step2Text = "un sonido tipo estática como el tuyo";
+            else if (userAnswers.step2Raw.includes('estática') || userAnswers.step2Raw.includes('chicharreo')) step2Text = "un sonido tipo estática como el tuyo";
             else if (userAnswers.step2Raw.includes('mezcla')) step2Text = "esa mezcla de sonidos complejos que escuchas";
         }
 
         if (par1) {
-            par1.innerHTML = `Según tus respuestas, <strong>${step2Text}</strong> es uno de los patrones más claros de <strong>bloqueo gamma de alta frecuencia</strong>. Esto confirma que tu problema no se está generando en tu oído, sino que es el mecanismo de filtrado natural de tu cerebro que se ha "apagado".`;
+            par1.innerHTML = `Según tus respuestas, <strong>${step2Text}</strong> es uno de los patrones más claros de bloqueo gamma. Esto confirma que tu problema no está en tus oídos, sino en tu cerebro. Por eso las pastillas no te han funcionado.`;
         }
+
+        // --- Factor agravante dinâmico (baseado na Q6 - momento do dia) ---
+        const factorValue = document.getElementById('dynamic-factor-agravante');
 
         if (factorValue && userAnswers.step6Raw) {
             if (userAnswers.step6Raw.includes('pantallas')) {
-                factorValue.textContent = "Interferencia electromagnética aguda";
-            } else if (userAnswers.step6Raw.includes('estrés')) {
+                factorValue.textContent = "Sobrecarga electromagnética aguda (pantallas)";
+            } else if (userAnswers.step6Raw.includes('estrés') || userAnswers.step6Raw.includes('cansancio')) {
                 factorValue.textContent = "Sobrecarga de cortisol bloqueando ondas gamma";
             } else if (userAnswers.step6Raw.includes('silencio')) {
                 factorValue.textContent = "Falla de cancelación por falta de estímulo externo";
-            } else if (userAnswers.step6Raw.includes('despertar')) {
+            } else if (userAnswers.step6Raw.includes('despertar') || userAnswers.step6Raw.includes('mañana')) {
                 factorValue.textContent = "Hiperactividad neuronal matutina";
             } else {
-                factorValue.textContent = "Disfunción de ondas gamma (Constante)";
+                factorValue.textContent = "Sobrecarga electromagnética bloqueando ondas gamma";
             }
         }
     }

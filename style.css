@@ -601,6 +601,28 @@ body {
     transform: scale(1.02);
 }
 
+/* Giant pulsing CTA variant for the results page */
+.cta-giant {
+    font-size: 1.45rem;
+    padding: 1.5rem 2rem;
+    letter-spacing: 0.01em;
+    box-shadow: 0 12px 35px rgba(16, 185, 129, 0.55);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.cta-giant:hover {
+    transform: scale(1.03);
+    box-shadow: 0 16px 40px rgba(16, 185, 129, 0.7);
+}
+
+@media (max-width: 639px) {
+    .cta-giant {
+        font-size: 1.2rem;
+        padding: 1.35rem 1.5rem;
+    }
+}
+
 .pulse-animation {
     animation: buttonPulse 2s infinite;
 }
