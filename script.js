@@ -54,6 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function goToStep(targetId) {
+        var match = targetId.match(/step(\d+)/);
+        if (match && window.NSTTracker) {
+            window.NSTTracker.trackQuizStep(parseInt(match[1]));
+        }
+
         // Animação de saída do card atual
         const currentCard = document.querySelector('.step-card.active');
         if (currentCard) {

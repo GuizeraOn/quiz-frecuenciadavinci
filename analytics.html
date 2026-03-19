@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroSilencio — Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:        #080b10;
+      --surface:   #0e1420;
+      --border:    #1c2535;
+      --text:      #e8edf5;
+      --muted:     #4a5568;
+      --accent:    #00e5ff;
+      --accent2:   #7c3aed;
+      --green:     #10b981;
+      --red:       #ef4444;
+      --yellow:    #f59e0b;
+      --mono:      'Space Mono', monospace;
+      --sans:      'Syne', sans-serif;
+    }
+
+    /* ── Reset ───────────────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    /* ── Top bar ─────────────────────────────────────────────── */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: rgba(8, 11, 16, 0.92); backdrop-filter: blur(12px); z-index: 100;
+    }
+    .topbar-brand { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; }
+    .topbar-right { display: flex; align-items: center; gap: 16px; }
+
+    /* Range selector */
+    .range-tabs { display: flex; gap: 4px; }
+    .range-tab {
+      font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 5px; border: 1px solid var(--border);
+      background: transparent; color: var(--muted); cursor: pointer; transition: all .2s;
+    }
+    .range-tab:hover, .range-tab.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+    /* Refresh btn */
+    .refresh-btn {
+      font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 5px; border: 1px solid var(--border);
+      background: transparent; color: var(--text); cursor: pointer; transition: all .2s; display: flex; align-items: center; gap: 6px;
+    }
+    .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .refresh-btn.loading svg { animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Config panel ────────────────────────────────────────── */
+    .config-panel { display: none; background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 28px; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+    .config-panel.open { display: flex; }
+    .config-group { display: flex; flex-direction: column; gap: 5px; }
+    .config-group label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    .config-input {
+      font-family: var(--mono); font-size: 12px; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+      border-radius: 5px; padding: 7px 10px; width: 340px;
+    }
+    .config-input:focus { outline: none; border-color: var(--accent); }
+    .config-save {
+      font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 8px 16px; background: var(--accent); color: var(--bg);
+      border: none; border-radius: 5px; cursor: pointer; transition: opacity .2s;
+    }
+    .config-save:hover { opacity: .85; }
+    .config-btn {
+      font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 5px; border: 1px dashed var(--border);
+      background: transparent; color: var(--muted); cursor: pointer; transition: all .2s;
+    }
+    .config-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Main layout ─────────────────────────────────────────── */
+    .main { padding: 28px; flex: 1; }
+    .section-title { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+
+    /* ── KPI Cards row ───────────────────────────────────────── */
+    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 32px; }
+    .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 16px; position: relative; overflow: hidden; }
+    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; transition: opacity .3s; }
+    .kpi-card:hover::before { opacity: 1; }
+    .kpi-label { font-family: var(--mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .kpi-value { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }
+    .kpi-sub { font-size: 11px; color: var(--muted); }
+    .kpi-value.accent { color: var(--accent); }
+    .kpi-value.green  { color: var(--green); }
+    .kpi-value.yellow { color: var(--yellow); }
+    .kpi-value.red    { color: var(--red); }
+
+    /* ── Two-col grid ────────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+    .card-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .card-title .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    /* ── Funnel visualization ────────────────────────────────── */
+    .funnel-list { display: flex; flex-direction: column; gap: 10px; }
+    .funnel-step { position: relative; display: flex; align-items: center; gap: 12px; }
+    .funnel-bar-wrap { flex: 1; background: rgba(255,255,255,.04); border-radius: 5px; height: 36px; overflow: hidden; position: relative; }
+    .funnel-bar {
+      height: 100%; border-radius: 5px; transition: width 1s cubic-bezier(.22,1,.36,1); display: flex; align-items: center;
+      padding-left: 12px; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--bg); white-space: nowrap; min-width: 0;
+    }
+    .funnel-bar.page-quiz      { background: var(--accent); }
+    .funnel-bar.page-vsl       { background: #7c3aed; }
+    .funnel-bar.page-upsell1   { background: var(--green); }
+    .funnel-bar.page-upsell2   { background: #0ea5e9; }
+    .funnel-bar.page-downsell1 { background: var(--yellow); }
+    .funnel-bar.page-downsell2 { background: #f97316; }
+
+    .funnel-meta { display: flex; flex-direction: column; align-items: flex-end; min-width: 80px; font-family: var(--mono); gap: 2px; }
+    .funnel-meta .fv { font-size: 14px; font-weight: 700; color: var(--text); }
+    .funnel-meta .fc { font-size: 10px; color: var(--muted); }
+    .funnel-meta .fd { font-size: 10px; }
+    .funnel-meta .fd.ok  { color: var(--green); }
+    .funnel-meta .fd.bad { color: var(--red); }
+    .funnel-label { font-size: 11px; font-weight: 700; color: var(--muted); width: 82px; flex-shrink: 0; text-transform: uppercase; letter-spacing: .5px; }
+
+    .funnel-arrow { text-align: center; font-family: var(--mono); font-size: 10px; color: var(--muted); margin: -2px 0; padding-left: 94px; }
+    .funnel-arrow .pct { color: var(--red); font-weight: 700; }
+
+    /* ── Quiz step drop-off ──────────────────────────────────── */
+    .quiz-rows { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-row { display: flex; align-items: center; gap: 10px; }
+    .quiz-row-num { font-family: var(--mono); font-size: 10px; color: var(--muted); width: 42px; flex-shrink: 0; text-align: right; }
+    .quiz-row-bar-wrap { flex: 1; background: rgba(255,255,255,.04); border-radius: 4px; height: 22px; overflow: hidden; }
+    .quiz-row-bar { height: 100%; background: linear-gradient(90deg, #00e5ff44, var(--accent)); border-radius: 4px; transition: width 1s cubic-bezier(.22,1,.36,1); }
+    .quiz-row-count { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--text); min-width: 36px; text-align: right; }
+    .quiz-row-drop { font-family: var(--mono); font-size: 10px; min-width: 42px; text-align: right; }
+    .quiz-row-drop.bad { color: var(--red); }
+    .quiz-row-drop.ok  { color: var(--green); }
+
+    /* ── Empty / error states ───────────────────────────────── */
+    .state-msg { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 20px; gap: 12px; color: var(--muted); font-family: var(--mono); font-size: 12px; text-align: center; }
+    .state-msg .icon { font-size: 36px; opacity: .4; }
+
+    /* ── Last updated ────────────────────────────────────────── */
+    .last-updated { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: right; margin-top: -20px; margin-bottom: 24px; }
+
+    .live-badge { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; color: var(--green); font-weight: 700; letter-spacing: 1px; }
+    .live-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.4s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+    .setup-banner { background: rgba(0, 229, 255, 0.06); border: 1px dashed var(--accent); border-radius: 10px; padding: 20px 22px; margin-bottom: 28px; display: flex; align-items: flex-start; gap: 14px; }
+    .setup-banner .icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .setup-banner-body { flex: 1; }
+    .setup-banner-body h3 { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+    .setup-banner-body p { font-size: 12px; color: var(--muted); line-height: 1.6; font-family: var(--mono); }
+
+    @media (max-width: 640px) { .topbar { padding: 14px 16px; } .main { padding: 16px; } .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">NST · Analytics</div>
+  <div class="topbar-right">
+    <div class="range-tabs">
+      <button class="range-tab active" data-days="1">24h</button>
+      <button class="range-tab" data-days="7">7d</button>
+      <button class="range-tab" data-days="30">30d</button>
+    </div>
+    <button class="config-btn" id="configToggle">⚙ Config</button>
+    <button class="refresh-btn" id="refreshBtn">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      Atualizar
+    </button>
+    <span class="live-badge"><span class="dot"></span> LIVE</span>
+  </div>
+</header>
+
+<div class="config-panel" id="configPanel">
+  <div class="config-group">
+    <label>Supabase URL</label>
+    <input class="config-input" id="cfgUrl" type="text" placeholder="https://xxxx.supabase.co" />
+  </div>
+  <div class="config-group">
+    <label>Anon Key</label>
+    <input class="config-input" id="cfgKey" type="password" placeholder="eyJhbGci..." />
+  </div>
+  <button class="config-save" id="cfgSave">Salvar</button>
+</div>
+
+<main class="main" id="main">
+  <div id="setupBanner" class="setup-banner" style="display:none;">
+    <div class="icon">⚙️</div>
+    <div class="setup-banner-body">
+      <h3>Configure suas credenciais Supabase</h3>
+      <p>Clique em "⚙ Config" no topo, insira sua Supabase URL e Anon Key, e salve.<br>Os dados carregarão automaticamente.</p>
+    </div>
+  </div>
+
+  <div id="lastUpdated" class="last-updated" style="display:none;"></div>
+
+  <div class="section-title">Visão Geral</div>
+  <div class="kpi-row" id="kpiRow">
+    <div class="kpi-card"><div class="kpi-label">Sessões totais</div><div class="kpi-value accent" id="kpiSessions">—</div><div class="kpi-sub">usuários únicos</div></div>
+    <div class="kpi-card"><div class="kpi-label">Chegaram à VSL</div><div class="kpi-value" id="kpiVsl">—</div><div class="kpi-sub" id="kpiVslPct">—</div></div>
+    <div class="kpi-card"><div class="kpi-label">Clicaram no CTA</div><div class="kpi-value green" id="kpiCta">—</div><div class="kpi-sub" id="kpiCtaPct">—</div></div>
+    <div class="kpi-card"><div class="kpi-label">Compraram Upsell 1</div><div class="kpi-value yellow" id="kpiU1">—</div><div class="kpi-sub" id="kpiU1Pct">—</div></div>
+    <div class="kpi-card"><div class="kpi-label">Compraram Upsell 2</div><div class="kpi-value yellow" id="kpiU2">—</div><div class="kpi-sub" id="kpiU2Pct">—</div></div>
+    <div class="kpi-card"><div class="kpi-label">Taxa de saída quiz</div><div class="kpi-value red" id="kpiQuizDrop">—</div><div class="kpi-sub">% que não completaram</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span> Funil por Página</div>
+      <div id="funnelContainer">
+        <div class="state-msg"><div class="icon">📊</div><div>Aguardando dados...</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent2)"></span> Drop-off por Step do Quiz</div>
+      <div id="quizContainer">
+        <div class="state-msg"><div class="icon">🧩</div><div>Aguardando dados...</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var CFG_KEY = 'nst_analytics_cfg';
+  var cfg = {};
+
+  function loadCfg() {
+    try { 
+      cfg = JSON.parse(localStorage.getItem(CFG_KEY) || '{}');
+      // PRE-FILL with project credentials
+      if (!cfg.url) {
+        cfg.url = 'https://vocfzmpmomqmrkynfyah.supabase.co';
+        cfg.key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvY2Z6bXBtb21xbXJreW5meWFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MjA4ODgsImV4cCI6MjA4OTQ5Njg4OH0.z8hctEWjep-gu1hCXqbE3NzJLSzo66RQag-SUB62Ppg';
+        saveCfg();
+      }
+    } catch(e){ cfg = {}; }
+  }
+  function saveCfg() { try { localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); } catch(e){} }
+  loadCfg();
+
+  var configPanel = document.getElementById('configPanel');
+  var configToggle = document.getElementById('configToggle');
+  var cfgUrl = document.getElementById('cfgUrl');
+  var cfgKey = document.getElementById('cfgKey');
+  var cfgSave = document.getElementById('cfgSave');
+  var setupBanner = document.getElementById('setupBanner');
+
+  configToggle.addEventListener('click', function () { configPanel.classList.toggle('open'); });
+  cfgUrl.value = cfg.url || '';
+  cfgKey.value = cfg.key || '';
+
+  cfgSave.addEventListener('click', function () {
+    cfg.url = cfgUrl.value.trim().replace(/\/$/, '');
+    cfg.key = cfgKey.value.trim();
+    saveCfg();
+    configPanel.classList.remove('open');
+    loadData();
+  });
+
+  var activeDays = 1;
+  document.querySelectorAll('.range-tab').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelector('.range-tab.active').classList.remove('active');
+      btn.classList.add('active');
+      activeDays = parseInt(btn.dataset.days);
+      loadData();
+    });
+  });
+
+  document.getElementById('refreshBtn').addEventListener('click', loadData);
+
+  function query(params) {
+    if (!cfg.url || !cfg.key) return Promise.reject('no-config');
+    var url = cfg.url + '/rest/v1/funnel_events?' + params;
+    return fetch(url, {
+      headers: {
+        'apikey': cfg.key,
+        'Authorization': 'Bearer ' + cfg.key,
+        'Accept': 'application/json'
+      }
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function(t){ throw new Error(t); });
+      return r.json();
+    });
+  }
+
+  function loadData() {
+    if (!cfg.url || !cfg.key) { setupBanner.style.display = 'flex'; return; }
+    setupBanner.style.display = 'none';
+    var refreshBtn = document.getElementById('refreshBtn');
+    refreshBtn.classList.add('loading');
+    var since = new Date(Date.now() - activeDays * 86400000).toISOString();
+    query('select=page,event,session_id,step,created_at&created_at=gte.' + since + '&limit=50000')
+      .then(function (rows) {
+        refreshBtn.classList.remove('loading');
+        renderDashboard(rows);
+        var el = document.getElementById('lastUpdated');
+        el.style.display = 'block';
+        el.textContent = 'Último update: ' + new Date().toLocaleTimeString('pt-BR');
+      })
+      .catch(function (err) {
+        refreshBtn.classList.remove('loading');
+        var errMsg = typeof err === 'string' ? err : (err.message || 'Erro');
+        document.getElementById('funnelContainer').innerHTML = '<div class="state-msg"><div class="icon">🚨</div><div>' + errMsg + '</div></div>';
+      });
+  }
+
+  var PAGE_ORDER = ['quiz', 'vsl', 'upsell1', 'upsell2', 'downsell1', 'downsell2'];
+  var PAGE_LABELS = { quiz: 'Quiz', vsl: 'VSL', upsell1: 'Upsell 1', upsell2: 'Upsell 2', downsell1: 'Downsell 1', downsell2: 'Downsell 2' };
+
+  function renderDashboard(rows) {
+    var pageSessions = {}; PAGE_ORDER.forEach(function(p){ pageSessions[p] = new Set(); });
+    var ctaSessions = new Set();
+    var quizStepMap = {};
+    rows.forEach(function (r) {
+      if (r.event === 'pageview' && pageSessions[r.page]) pageSessions[r.page].add(r.session_id);
+      if (r.event === 'cta_click') ctaSessions.add(r.session_id);
+      if (r.event === 'quiz_step' && r.step != null) {
+        if (!quizStepMap[r.step]) quizStepMap[r.step] = new Set();
+        quizStepMap[r.step].add(r.session_id);
+      }
+    });
+    var quizCount = pageSessions['quiz'].size;
+    var vslCount  = pageSessions['vsl'].size;
+    var ctaCount  = ctaSessions.size;
+    var u1Count   = pageSessions['upsell1'].size;
+    var u2Count   = pageSessions['upsell2'].size;
+    var steps     = Object.keys(quizStepMap).map(Number).sort(function(a,b){return a-b;});
+    var quizEntry = steps.length > 0 ? quizStepMap[steps[0]].size : 0;
+    var quizMax   = steps.length > 0 ? quizStepMap[steps[steps.length-1]].size : 0;
+    var quizDrop  = quizEntry > 0 ? Math.round((1 - quizMax / quizEntry) * 100) + '%' : '—';
+
+    document.getElementById('kpiSessions').textContent = fmt(quizCount || rows.length);
+    document.getElementById('kpiVsl').textContent = fmt(vslCount);
+    document.getElementById('kpiVslPct').textContent = pct(vslCount, quizCount);
+    document.getElementById('kpiCta').textContent = fmt(ctaCount);
+    document.getElementById('kpiCtaPct').textContent = pct(ctaCount, vslCount);
+    document.getElementById('kpiU1').textContent = fmt(u1Count);
+    document.getElementById('kpiU1Pct').textContent = pct(u1Count, vslCount);
+    document.getElementById('kpiU2').textContent = fmt(u2Count);
+    document.getElementById('kpiU2Pct').textContent = pct(u2Count, u1Count);
+    document.getElementById('kpiQuizDrop').textContent = quizDrop;
+
+    renderFunnel(pageSessions, quizCount || vslCount || 1);
+    renderQuizSteps(quizStepMap);
+  }
+
+  function renderFunnel(pageSessions, maxCount) {
+    var container = document.getElementById('funnelContainer');
+    var html = '<div class="funnel-list">';
+    var prevCount = null;
+    PAGE_ORDER.forEach(function (page) {
+      var count = pageSessions[page].size;
+      var barPct = maxCount > 0 ? Math.max((count / maxCount) * 100, 2) : 0;
+      var dropHtml = '';
+      if (prevCount !== null && prevCount > 0) {
+        var dropRate = Math.round((1 - count / prevCount) * 100);
+        html += '<div class="funnel-arrow">↓ <span class="pct">' + (dropRate > 0 ? '-' + dropRate + '%' : '✓') + ' saíram</span></div>';
+        dropHtml = '<div class="fd ' + (dropRate > 60 ? 'bad' : 'ok') + '">' + (dropRate > 0 ? '-' + dropRate + '%' : '✓') + '</div>';
+      }
+      html += '<div class="funnel-step"><div class="funnel-label">' + PAGE_LABELS[page] + '</div><div class="funnel-bar-wrap">';
+      html += '<div class="funnel-bar page-' + page + '" style="width:' + barPct.toFixed(1) + '%">' + (barPct > 18 ? count : '') + '</div></div>';
+      html += '<div class="funnel-meta"><div class="fv">' + fmt(count) + '</div><div class="fc">' + pct(count, maxCount) + '</div>' + dropHtml + '</div></div>';
+      prevCount = count;
+    });
+    container.innerHTML = html + '</div>';
+  }
+
+  function renderQuizSteps(quizStepMap) {
+    var container = document.getElementById('quizContainer');
+    var steps = Object.keys(quizStepMap).map(Number).sort(function(a,b){return a-b;});
+    if (steps.length === 0) { container.innerHTML = '<div class="state-msg">Sem dados</div>'; return; }
+    var maxCount = Math.max.apply(null, steps.map(function(s){ return quizStepMap[s].size; }));
+    var html = '<div class="quiz-rows">';
+    steps.forEach(function (step, i) {
+      var count = quizStepMap[step].size;
+      var barPct = maxCount > 0 ? (count / maxCount) * 100 : 0;
+      var dropHtml = '';
+      if (i > 0) {
+        var prevCount = quizStepMap[steps[i-1]].size;
+        var drop = prevCount > 0 ? Math.round((1 - count / prevCount) * 100) : 0;
+        dropHtml = '<div class="quiz-row-drop ' + (drop > 15 ? 'bad' : 'ok') + '">' + (drop > 0 ? '-' + drop + '%' : '—') + '</div>';
+      }
+      html += '<div class="quiz-row"><div class="quiz-row-num">Step ' + step + '</div><div class="quiz-row-bar-wrap"><div class="quiz-row-bar" style="width:' + barPct.toFixed(1) + '%"></div></div><div class="quiz-row-count">' + fmt(count) + '</div>' + dropHtml + '</div>';
+    });
+    container.innerHTML = html + '</div>';
+  }
+
+  function fmt(n) { return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n); }
+  function pct(a, b) { if (!b) return '—'; return Math.round((a / b) * 100) + '%'; }
+
+  if (cfg.url && cfg.key) loadData(); else setupBanner.style.display = 'flex';
+  setInterval(loadData, 60000);
+})();
+</script>
+</body>
+</html>
