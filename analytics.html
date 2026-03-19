@@ -140,6 +140,9 @@
     .quiz-row-drop { font-family: var(--mono); font-size: 10px; min-width: 42px; text-align: right; }
     .quiz-row-drop.bad { color: var(--red); }
     .quiz-row-drop.ok  { color: var(--green); }
+    .quiz-row-time { font-family: var(--mono); font-size: 10px; min-width: 38px; text-align: right; color: var(--muted); }
+    .quiz-row-time.ok  { color: var(--green); }
+    .quiz-row-time.bad { color: var(--red); }
 
     /* ── Empty / error states ───────────────────────────────── */
     .state-msg { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 20px; gap: 12px; color: var(--muted); font-family: var(--mono); font-size: 12px; text-align: center; }
@@ -203,9 +206,19 @@
 
   <div id="lastUpdated" class="last-updated" style="display:none;"></div>
 
+  <div id="worstStepBanner" style="display:none; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.3); border-radius:10px; padding:14px 20px; margin-bottom:24px; align-items:center; gap:14px;">
+    <span style="font-size:22px;">⚠️</span>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:#ef4444;" id="worstStepTitle">—</div>
+      <div style="font-size:11px;color:var(--muted);font-family:var(--mono);" id="worstStepSub">—</div>
+    </div>
+  </div>
+
   <div class="section-title">Visão Geral</div>
   <div class="kpi-row" id="kpiRow">
     <div class="kpi-card"><div class="kpi-label">Sessões totais</div><div class="kpi-value accent" id="kpiSessions">—</div><div class="kpi-sub">usuários únicos</div></div>
+    <div class="kpi-card"><div class="kpi-label">Interaction Rate</div><div class="kpi-value" id="kpiInteraction">—</div><div class="kpi-sub" id="kpiInteractionAbs">— de — iniciaram</div></div>
+    <div class="kpi-card"><div class="kpi-label">Conclusão do Quiz</div><div class="kpi-value" id="kpiCompletion">—</div><div class="kpi-sub" id="kpiCompletionAbs">chegaram ao final</div></div>
     <div class="kpi-card"><div class="kpi-label">Chegaram à VSL</div><div class="kpi-value" id="kpiVsl">—</div><div class="kpi-sub" id="kpiVslPct">—</div></div>
     <div class="kpi-card"><div class="kpi-label">Clicaram no CTA</div><div class="kpi-value green" id="kpiCta">—</div><div class="kpi-sub" id="kpiCtaPct">—</div></div>
     <div class="kpi-card"><div class="kpi-label">Compraram Upsell 1</div><div class="kpi-value yellow" id="kpiU1">—</div><div class="kpi-sub" id="kpiU1Pct">—</div></div>
@@ -226,6 +239,11 @@
         <div class="state-msg"><div class="icon">🧩</div><div>Aguardando dados...</div></div>
       </div>
     </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 32px;">
+    <div class="card-title"><span class="dot" style="background:var(--yellow)"></span> Volume por Hora do Dia</div>
+    <div id="hourlyContainer"><div class="state-msg"><div class="icon">⏰</div><div>Aguardando dados...</div></div></div>
   </div>
 </main>
 
@@ -295,7 +313,7 @@
     var refreshBtn = document.getElementById('refreshBtn');
     refreshBtn.classList.add('loading');
     var since = new Date(Date.now() - activeDays * 86400000).toISOString();
-    query('select=page,event,session_id,step,created_at&created_at=gte.' + since + '&limit=50000')
+    query('select=page,event,session_id,step,value,created_at&created_at=gte.' + since + '&limit=50000')
       .then(function (rows) {
         refreshBtn.classList.remove('loading');
         renderDashboard(rows);
@@ -317,6 +335,10 @@
     var pageSessions = {}; PAGE_ORDER.forEach(function(p){ pageSessions[p] = new Set(); });
     var ctaSessions = new Set();
     var quizStepMap = {};
+    var quizStartSessions = new Set();
+    var hourlyMap = {};
+    for (var h = 0; h < 24; h++) hourlyMap[h] = 0;
+
     rows.forEach(function (r) {
       if (r.event === 'pageview' && pageSessions[r.page]) pageSessions[r.page].add(r.session_id);
       if (r.event === 'cta_click') ctaSessions.add(r.session_id);
@@ -324,6 +346,24 @@
         if (!quizStepMap[r.step]) quizStepMap[r.step] = new Set();
         quizStepMap[r.step].add(r.session_id);
       }
+      if (r.event === 'quiz_start') quizStartSessions.add(r.session_id);
+      if (r.event === 'pageview') {
+        var hour = new Date(r.created_at).getHours();
+        hourlyMap[hour]++;
+      }
+    });
+
+    var stepTimes = {};
+    rows.forEach(function(r) {
+      if (r.event === 'step_time' && r.step != null && r.value != null) {
+        if (!stepTimes[r.step]) stepTimes[r.step] = [];
+        if (r.value <= 300) stepTimes[r.step].push(r.value);
+      }
+    });
+    var stepAvgTime = {};
+    Object.keys(stepTimes).forEach(function(step) {
+      var arr = stepTimes[step];
+      stepAvgTime[step] = Math.round(arr.reduce(function(a,b){ return a+b; }, 0) / arr.length);
     });
     var quizCount = pageSessions['quiz'].size;
     var vslCount  = pageSessions['vsl'].size;
@@ -331,11 +371,34 @@
     var u1Count   = pageSessions['upsell1'].size;
     var u2Count   = pageSessions['upsell2'].size;
     var steps     = Object.keys(quizStepMap).map(Number).sort(function(a,b){return a-b;});
+    
+    // Feature 1: Interaction Rate
+    var quizStartCount = quizStartSessions.size;
+    var interactionRate = quizCount > 0 ? Math.round((quizStartCount / quizCount) * 100) + '%' : '—';
+    var irColor = quizCount > 0 && (quizStartCount / quizCount >= 0.7) ? 'green' : 'red';
+    
+    // Feature 3: Taxa de Conclusão do Quiz
+    var quizFirstStep = steps[0];
+    var quizLastStep  = steps[steps.length - 1];
+    var firstStepCount = quizFirstStep ? quizStepMap[quizFirstStep].size : 0;
+    var lastStepCount  = quizLastStep ? quizStepMap[quizLastStep].size : 0;
+    var completionRate = firstStepCount > 0 ? Math.round((lastStepCount / firstStepCount) * 100) : null;
+    
+    // Original KPIs
     var quizEntry = steps.length > 0 ? quizStepMap[steps[0]].size : 0;
     var quizMax   = steps.length > 0 ? quizStepMap[steps[steps.length-1]].size : 0;
     var quizDrop  = quizEntry > 0 ? Math.round((1 - quizMax / quizEntry) * 100) + '%' : '—';
 
     document.getElementById('kpiSessions').textContent = fmt(quizCount || rows.length);
+    
+    document.getElementById('kpiInteraction').textContent = interactionRate;
+    document.getElementById('kpiInteraction').className = 'kpi-value ' + irColor;
+    document.getElementById('kpiInteractionAbs').textContent = quizStartCount + ' de ' + quizCount + ' iniciaram';
+    
+    var compEl = document.getElementById('kpiCompletion');
+    compEl.textContent = completionRate !== null ? completionRate + '%' : '—';
+    compEl.className = 'kpi-value ' + (completionRate >= 60 ? 'green' : completionRate >= 40 ? 'yellow' : 'red');
+    document.getElementById('kpiCompletionAbs').textContent = lastStepCount + ' de ' + firstStepCount + ' chegaram ao final';
     document.getElementById('kpiVsl').textContent = fmt(vslCount);
     document.getElementById('kpiVslPct').textContent = pct(vslCount, quizCount);
     document.getElementById('kpiCta').textContent = fmt(ctaCount);
@@ -346,8 +409,60 @@
     document.getElementById('kpiU2Pct').textContent = pct(u2Count, u1Count);
     document.getElementById('kpiQuizDrop').textContent = quizDrop;
 
+    // Feature 6: Pior Step
+    var worstStep = null;
+    var worstDropRate = 0;
+    for (var i = 1; i < steps.length; i++) {
+        var curr = steps[i];
+        var prev = steps[i - 1];
+        var cCount = quizStepMap[curr].size;
+        var pCount = quizStepMap[prev].size;
+        if (pCount > 0) {
+            var drop = (1 - cCount / pCount);
+            if (drop > worstDropRate) {
+                worstDropRate = drop;
+                worstStep = curr;
+            }
+        }
+    }
+    var banner = document.getElementById('worstStepBanner');
+    if (worstStep !== null && worstDropRate > 0.05) {
+        var dropPct = Math.round(worstDropRate * 100);
+        document.getElementById('worstStepTitle').textContent = 'Step ' + worstStep + ' — maior abandono do quiz: ' + dropPct + '%';
+        document.getElementById('worstStepSub').textContent = quizStepMap[steps[steps.indexOf(worstStep)-1]].size + ' usuários chegaram | ' + Math.round(worstDropRate * quizStepMap[steps[steps.indexOf(worstStep)-1]].size) + ' saíram neste step — prioridade de otimização';
+        banner.style.display = 'flex';
+    } else {
+        banner.style.display = 'none';
+    }
+
+    var hourlyMax = Math.max.apply(null, Object.values(hourlyMap));
+    renderHourly(hourlyMap, hourlyMax);
+
     renderFunnel(pageSessions, quizCount || vslCount || 1);
-    renderQuizSteps(quizStepMap);
+    renderQuizSteps(quizStepMap, stepAvgTime);
+  }
+
+  function renderHourly(hourlyMap, maxVal) {
+    var container = document.getElementById('hourlyContainer');
+    if (maxVal === 0) {
+        container.innerHTML = '<div class="state-msg"><div class="icon">📭</div><div>Sem dados no período</div></div>';
+        return;
+    }
+    var html = '<div style="display:flex;align-items:flex-end;gap:3px;height:80px;padding-top:8px;">';
+    for (var h = 0; h < 24; h++) {
+        var count = hourlyMap[h];
+        var pct = maxVal > 0 ? (count / maxVal) * 100 : 0;
+        var isTop = count === maxVal && count > 0;
+        var barColor = isTop ? 'var(--yellow)' : 'var(--accent)';
+        html += '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">';
+        html += '<div style="width:100%;background:' + barColor + ';height:' + pct.toFixed(0) + '%;border-radius:2px 2px 0 0;min-height:' + (count > 0 ? '3' : '0') + 'px;opacity:0.85;transition:height 0.8s;"></div>';
+        html += '<div style="font-family:var(--mono);font-size:8px;color:var(--muted);">' + String(h).padStart(2,'0') + '</div>';
+        html += '</div>';
+    }
+    html += '</div>';
+    var peakHour = Object.keys(hourlyMap).reduce(function(a, b) { return hourlyMap[a] > hourlyMap[b] ? a : b; });
+    html += '<div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:8px;">Pico: ' + String(peakHour).padStart(2,'0') + 'h (' + hourlyMap[peakHour] + ' visitas)</div>';
+    container.innerHTML = html;
   }
 
   function renderFunnel(pageSessions, maxCount) {
@@ -371,7 +486,7 @@
     container.innerHTML = html + '</div>';
   }
 
-  function renderQuizSteps(quizStepMap) {
+  function renderQuizSteps(quizStepMap, stepAvgTime) {
     var container = document.getElementById('quizContainer');
     var steps = Object.keys(quizStepMap).map(Number).sort(function(a,b){return a-b;});
     if (steps.length === 0) { container.innerHTML = '<div class="state-msg">Sem dados</div>'; return; }
@@ -386,7 +501,9 @@
         var drop = prevCount > 0 ? Math.round((1 - count / prevCount) * 100) : 0;
         dropHtml = '<div class="quiz-row-drop ' + (drop > 15 ? 'bad' : 'ok') + '">' + (drop > 0 ? '-' + drop + '%' : '—') + '</div>';
       }
-      html += '<div class="quiz-row"><div class="quiz-row-num">Step ' + step + '</div><div class="quiz-row-bar-wrap"><div class="quiz-row-bar" style="width:' + barPct.toFixed(1) + '%"></div></div><div class="quiz-row-count">' + fmt(count) + '</div>' + dropHtml + '</div>';
+      var avg = Math.round(stepAvgTime[step]);
+      var avgHtml = !isNaN(avg) ? '<div class="quiz-row-time ' + (avg < 4 ? 'bad' : avg > 10 ? 'ok' : '') + '">' + avg + 's</div>' : '<div class="quiz-row-time">—</div>';
+      html += '<div class="quiz-row"><div class="quiz-row-num">Step ' + step + '</div><div class="quiz-row-bar-wrap"><div class="quiz-row-bar" style="width:' + barPct.toFixed(1) + '%"></div></div><div class="quiz-row-count">' + fmt(count) + '</div>' + dropHtml + avgHtml + '</div>';
     });
     container.innerHTML = html + '</div>';
   }

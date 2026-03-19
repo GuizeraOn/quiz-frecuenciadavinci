@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function goToStep(targetId) {
         if (lastStep !== null && window.NSTTracker) {
             var secondsOnStep = Math.round((Date.now() - stepEnteredAt) / 1000);
-            window.NSTTracker.track('step_time_' + lastStep, secondsOnStep);
+            window.NSTTracker.track('step_time', lastStep, secondsOnStep);
         }
         stepEnteredAt = Date.now();
         lastStep = parseInt((targetId.match(/step(\d+)/) || [])[1]) || null;

@@ -25,14 +25,15 @@
   }
 
   // ── Core send function ────────────────────────────────────────────────────
-  function sendEvent(event, step) {
+  function sendEvent(event, step, value) {
     if (!SUPABASE_URL || !SUPABASE_ANON_KEY || SUPABASE_URL.includes('YOUR_PROJECT')) return;
 
     var payload = {
       session_id : sessionId,
       page       : PAGE_ID,
       event      : event,
-      step       : typeof step === 'number' ? step : null
+      step       : typeof step === 'number' ? step : null,
+      value      : typeof value === 'number' ? value : null
     };
 
     // Use fetch with keepalive so events fire even when navigating away
@@ -85,8 +86,8 @@
     },
 
     /** Manual event dispatch if needed */
-    track: function (eventName, step) {
-      sendEvent(eventName, step);
+    track: function (eventName, step, value) {
+      sendEvent(eventName, step, value);
     }
   };
 
