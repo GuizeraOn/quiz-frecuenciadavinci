@@ -232,18 +232,13 @@
 <script>
 (function () {
   var CFG_KEY = 'nst_analytics_cfg';
-  var cfg = {};
+  var cfg = {
+    url: 'https://vocfzmpmomqmrkynfyah.supabase.co',
+    key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvY2Z6bXBtb21xbXJreW5meWFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MjA4ODgsImV4cCI6MjA4OTQ5Njg4OH0.z8hctEWjep-gu1hCXqbE3NzJLSzo66RQag-SUB62Ppg'
+  };
 
   function loadCfg() {
-    try { 
-      cfg = JSON.parse(localStorage.getItem(CFG_KEY) || '{}');
-      // PRE-FILL with project credentials
-      if (!cfg.url) {
-        cfg.url = 'https://vocfzmpmomqmrkynfyah.supabase.co';
-        cfg.key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvY2Z6bXBtb21xbXJreW5meWFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MjA4ODgsImV4cCI6MjA4OTQ5Njg4OH0.z8hctEWjep-gu1hCXqbE3NzJLSzo66RQag-SUB62Ppg';
-        saveCfg();
-      }
-    } catch(e){ cfg = {}; }
+    // credentials hardcoded — nothing to load
   }
   function saveCfg() { try { localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); } catch(e){} }
   loadCfg();
