@@ -20,7 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
     setupMultiSelectValidation();
 
+    var stepEnteredAt = Date.now();
+    var lastStep = null;
+
     function setupNavigation() {
+        var quizStarted = false;
+
         // Seleciona todos os botões que avançam um passo
         const nextButtons = document.querySelectorAll('.next-step');
 
@@ -48,12 +53,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                if (!quizStarted) {
+                    quizStarted = true;
+                    if (window.NSTTracker) window.NSTTracker.track('quiz_start');
+                }
+
                 goToStep(targetId);
             });
         });
     }
 
     function goToStep(targetId) {
+        if (lastStep !== null && window.NSTTracker) {
+            var secondsOnStep = Math.round((Date.now() - stepEnteredAt) / 1000);
+            window.NSTTracker.track('step_time_' + lastStep, secondsOnStep);
+        }
+        stepEnteredAt = Date.now();
+        lastStep = parseInt((targetId.match(/step(\d+)/) || [])[1]) || null;
+
         var match = targetId.match(/step(\d+)/);
         if (match && window.NSTTracker) {
             window.NSTTracker.trackQuizStep(parseInt(match[1]));
