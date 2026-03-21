@@ -505,6 +505,29 @@
                         <p class="mt-4"><strong>Haz clic abajo para ver la presentación completa y descubrir cómo funciona para tu caso específico:</strong></p>
                     </div>
 
+                    <!-- Voice Note Player -->
+                    <div class="voice-note-container mb-8">
+                        <div class="voice-note-card">
+                            <audio id="drAudio" src="audio/ElevenLabs_2026-03-21T12_53_19_Juan Carlos - Warm and Conversational_pvc_sp100_s50_sb75_se0_b_m2.mp3" preload="metadata"></audio>
+                            <div class="vn-avatar">
+                                <img src="images/dr.ramirez.png" alt="Dr. Ramírez">
+                                <div class="vn-online-dot"></div>
+                            </div>
+                            <div class="vn-content">
+                                <div class="vn-header">Mensaje de voz del Dr. Ramírez</div>
+                                <div class="vn-player">
+                                    <button id="playDrAudio" class="vn-play-btn" aria-label="Play audio">
+                                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
+                                    <div class="vn-waveform">
+                                        <div class="vn-bar"></div><div class="vn-bar"></div><div class="vn-bar"></div><div class="vn-bar"></div><div class="vn-bar"></div><div class="vn-bar"></div><div class="vn-bar"></div><div class="vn-bar"></div><div class="vn-bar"></div><div class="vn-bar"></div>
+                                    </div>
+                                    <div class="vn-time" id="vnTime">0:38</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <a href="vsl/index.html" class="cta-button pulse-animation">
                         Descubrir el Protocolo Da Vinci para mi perfil <span class="arrow">→</span>
                     </a>
