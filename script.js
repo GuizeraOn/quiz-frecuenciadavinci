@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Voice Note Logic
     const audioEl = document.getElementById('drAudio');
     const playBtn = document.getElementById('playDrAudio');
-    const waveform = document.querySelector('.vn-waveform');
+    const waveform = document.querySelector('.wa-waveform-wrapper');
     const vnTime = document.getElementById('vnTime');
     
     if(playBtn && audioEl) {
