@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeuroSilencio — Analytics</title>
+  <title>NeuroSilencio â€” Analytics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ── Tokens ─────────────────────────────────────────────── */
+    /* â”€â”€ Tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     :root {
       --bg:        #080b10;
       --surface:   #0e1420;
@@ -23,7 +23,7 @@
       --sans:      'Syne', sans-serif;
     }
 
-    /* ── Reset ───────────────────────────────────────────────── */
+    /* â”€â”€ Reset â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -34,7 +34,7 @@
       display: flex; flex-direction: column;
     }
 
-    /* ── Top bar ─────────────────────────────────────────────── */
+    /* â”€â”€ Top bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .topbar {
       display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-bottom: 1px solid var(--border);
       position: sticky; top: 0; background: rgba(8, 11, 16, 0.92); backdrop-filter: blur(12px); z-index: 100;
@@ -59,7 +59,7 @@
     .refresh-btn.loading svg { animation: spin .7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Config panel ────────────────────────────────────────── */
+    /* â”€â”€ Config panel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .config-panel { display: none; background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 28px; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
     .config-panel.open { display: flex; }
     .config-group { display: flex; flex-direction: column; gap: 5px; }
@@ -80,11 +80,11 @@
     }
     .config-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── Main layout ─────────────────────────────────────────── */
+    /* â”€â”€ Main layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .main { padding: 28px; flex: 1; }
     .section-title { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
 
-    /* ── KPI Cards row ───────────────────────────────────────── */
+    /* â”€â”€ KPI Cards row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 32px; }
     .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 16px; position: relative; overflow: hidden; }
     .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; transition: opacity .3s; }
@@ -97,14 +97,14 @@
     .kpi-value.yellow { color: var(--yellow); }
     .kpi-value.red    { color: var(--red); }
 
-    /* ── Two-col grid ────────────────────────────────────────── */
+    /* â”€â”€ Two-col grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
     @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
     .card-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
     .card-title .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
-    /* ── Funnel visualization ────────────────────────────────── */
+    /* â”€â”€ Funnel visualization â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .funnel-list { display: flex; flex-direction: column; gap: 10px; }
     .funnel-step { position: relative; display: flex; align-items: center; gap: 12px; }
     .funnel-bar-wrap { flex: 1; background: rgba(255,255,255,.04); border-radius: 5px; height: 36px; overflow: hidden; position: relative; }
@@ -130,7 +130,7 @@
     .funnel-arrow { text-align: center; font-family: var(--mono); font-size: 10px; color: var(--muted); margin: -2px 0; padding-left: 94px; }
     .funnel-arrow .pct { color: var(--red); font-weight: 700; }
 
-    /* ── Quiz step drop-off ──────────────────────────────────── */
+    /* â”€â”€ Quiz step drop-off â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .quiz-rows { display: flex; flex-direction: column; gap: 8px; }
     .quiz-row { display: flex; align-items: center; gap: 10px; }
     .quiz-row-num { font-family: var(--mono); font-size: 10px; color: var(--muted); width: 42px; flex-shrink: 0; text-align: right; }
@@ -144,11 +144,11 @@
     .quiz-row-time.ok  { color: var(--green); }
     .quiz-row-time.bad { color: var(--red); }
 
-    /* ── Empty / error states ───────────────────────────────── */
+    /* â”€â”€ Empty / error states â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .state-msg { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 20px; gap: 12px; color: var(--muted); font-family: var(--mono); font-size: 12px; text-align: center; }
     .state-msg .icon { font-size: 36px; opacity: .4; }
 
-    /* ── Last updated ────────────────────────────────────────── */
+    /* â”€â”€ Last updated â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     .last-updated { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: right; margin-top: -20px; margin-bottom: 24px; }
 
     .live-badge { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; color: var(--green); font-weight: 700; letter-spacing: 1px; }
@@ -162,19 +162,92 @@
     .setup-banner-body p { font-size: 12px; color: var(--muted); line-height: 1.6; font-family: var(--mono); }
 
     @media (max-width: 640px) { .topbar { padding: 14px 16px; } .main { padding: 16px; } .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+
+    /* â”€â”€ Quiz Copy Export Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .copy-export-section { padding: 0 28px 40px; }
+    @media (max-width: 640px) { .copy-export-section { padding: 0 16px 32px; } }
+
+    .copy-export-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px; flex-wrap: wrap; gap: 10px;
+    }
+    .copy-export-title {
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .copy-export-actions { display: flex; align-items: center; gap: 10px; }
+
+    .copy-json-btn {
+      font-family: var(--mono); font-size: 11px; font-weight: 700;
+      padding: 7px 16px; border-radius: 6px;
+      border: 1px solid var(--accent); background: rgba(0,229,255,0.07);
+      color: var(--accent); cursor: pointer; transition: all .2s;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .copy-json-btn:hover { background: var(--accent); color: var(--bg); }
+    .copy-json-btn.copied { background: var(--green); border-color: var(--green); color: var(--bg); }
+
+    .step-count-badge {
+      font-family: var(--mono); font-size: 10px; color: var(--muted);
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 20px; padding: 3px 10px;
+    }
+    .step-count-badge span { color: var(--accent); font-weight: 700; }
+
+    .quiz-copy-status {
+      font-family: var(--mono); font-size: 10px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .quiz-copy-status.ok  { color: var(--green); }
+    .quiz-copy-status.err { color: var(--red); }
+    .quiz-copy-status.loading { color: var(--muted); animation: pulse-opacity 1.2s infinite; }
+    @keyframes pulse-opacity { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+    .json-viewer-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .json-viewer-topbar {
+      background: rgba(255,255,255,.03); border-bottom: 1px solid var(--border);
+      padding: 10px 18px; display: flex; align-items: center; gap: 8px;
+    }
+    .json-viewer-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .json-viewer-filename {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      margin-left: 4px; flex: 1;
+    }
+    .json-viewer-lines {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+    }
+    .json-viewer-body {
+      padding: 18px 20px; overflow-x: auto; max-height: 520px;
+      overflow-y: auto; position: relative;
+    }
+    .json-viewer-body pre {
+      margin: 0; white-space: pre; font-family: var(--mono); font-size: 12px;
+      line-height: 1.65; color: var(--text);
+    }
+    /* Syntax colours */
+    .jt-key      { color: #7dd3fc; }  /* light blue */
+    .jt-str      { color: #86efac; }  /* green */
+    .jt-num      { color: #fbbf24; }  /* amber */
+    .jt-bool     { color: #f472b6; }  /* pink */
+    .jt-null     { color: var(--muted); }
+    .jt-symbol   { color: var(--muted); }
+    .jt-url      { color: #a78bfa; text-decoration: underline; cursor: pointer; } /* purple */
   </style>
 </head>
 <body>
 
 <header class="topbar">
-  <div class="topbar-brand">NST · Analytics</div>
+  <div class="topbar-brand">NST Â· Analytics</div>
   <div class="topbar-right">
     <div class="range-tabs">
       <button class="range-tab active" data-days="1">24h</button>
       <button class="range-tab" data-days="7">7d</button>
       <button class="range-tab" data-days="30">30d</button>
     </div>
-    <button class="config-btn" id="configToggle">⚙ Config</button>
+    <button class="config-btn" id="configToggle">âš™ Config</button>
     <button class="refresh-btn" id="refreshBtn">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
       Atualizar
@@ -197,46 +270,46 @@
 
 <main class="main" id="main">
   <div id="setupBanner" class="setup-banner" style="display:none;">
-    <div class="icon">⚙️</div>
+    <div class="icon">âš™ï¸</div>
     <div class="setup-banner-body">
       <h3>Configure suas credenciais Supabase</h3>
-      <p>Clique em "⚙ Config" no topo, insira sua Supabase URL e Anon Key, e salve.<br>Os dados carregarão automaticamente.</p>
+      <p>Clique em "âš™ Config" no topo, insira sua Supabase URL e Anon Key, e salve.<br>Os dados carregarÃ£o automaticamente.</p>
     </div>
   </div>
 
   <div id="lastUpdated" class="last-updated" style="display:none;"></div>
 
   <div id="worstStepBanner" style="display:none; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.3); border-radius:10px; padding:14px 20px; margin-bottom:24px; align-items:center; gap:14px;">
-    <span style="font-size:22px;">⚠️</span>
+    <span style="font-size:22px;">âš ï¸</span>
     <div>
-      <div style="font-size:13px;font-weight:700;color:#ef4444;" id="worstStepTitle">—</div>
-      <div style="font-size:11px;color:var(--muted);font-family:var(--mono);" id="worstStepSub">—</div>
+      <div style="font-size:13px;font-weight:700;color:#ef4444;" id="worstStepTitle">â€”</div>
+      <div style="font-size:11px;color:var(--muted);font-family:var(--mono);" id="worstStepSub">â€”</div>
     </div>
   </div>
 
-  <div class="section-title">Visão Geral</div>
+  <div class="section-title">VisÃ£o Geral</div>
   <div class="kpi-row" id="kpiRow">
-    <div class="kpi-card"><div class="kpi-label">Sessões totais</div><div class="kpi-value accent" id="kpiSessions">—</div><div class="kpi-sub">usuários únicos</div></div>
-    <div class="kpi-card"><div class="kpi-label">Interaction Rate</div><div class="kpi-value" id="kpiInteraction">—</div><div class="kpi-sub" id="kpiInteractionAbs">— de — iniciaram</div></div>
-    <div class="kpi-card"><div class="kpi-label">Conclusão do Quiz</div><div class="kpi-value" id="kpiCompletion">—</div><div class="kpi-sub" id="kpiCompletionAbs">chegaram ao final</div></div>
-    <div class="kpi-card"><div class="kpi-label">Chegaram à VSL</div><div class="kpi-value" id="kpiVsl">—</div><div class="kpi-sub" id="kpiVslPct">—</div></div>
-    <div class="kpi-card"><div class="kpi-label">Clicaram no CTA</div><div class="kpi-value green" id="kpiCta">—</div><div class="kpi-sub" id="kpiCtaPct">—</div></div>
-    <div class="kpi-card"><div class="kpi-label">Compraram Upsell 1</div><div class="kpi-value yellow" id="kpiU1">—</div><div class="kpi-sub" id="kpiU1Pct">—</div></div>
-    <div class="kpi-card"><div class="kpi-label">Compraram Upsell 2</div><div class="kpi-value yellow" id="kpiU2">—</div><div class="kpi-sub" id="kpiU2Pct">—</div></div>
-    <div class="kpi-card"><div class="kpi-label">Taxa de saída quiz</div><div class="kpi-value red" id="kpiQuizDrop">—</div><div class="kpi-sub">% que não completaram</div></div>
+    <div class="kpi-card"><div class="kpi-label">SessÃµes totais</div><div class="kpi-value accent" id="kpiSessions">â€”</div><div class="kpi-sub">usuÃ¡rios Ãºnicos</div></div>
+    <div class="kpi-card"><div class="kpi-label">Interaction Rate</div><div class="kpi-value" id="kpiInteraction">â€”</div><div class="kpi-sub" id="kpiInteractionAbs">â€” de â€” iniciaram</div></div>
+    <div class="kpi-card"><div class="kpi-label">ConclusÃ£o do Quiz</div><div class="kpi-value" id="kpiCompletion">â€”</div><div class="kpi-sub" id="kpiCompletionAbs">chegaram ao final</div></div>
+    <div class="kpi-card"><div class="kpi-label">Chegaram Ã  VSL</div><div class="kpi-value" id="kpiVsl">â€”</div><div class="kpi-sub" id="kpiVslPct">â€”</div></div>
+    <div class="kpi-card"><div class="kpi-label">Clicaram no CTA</div><div class="kpi-value green" id="kpiCta">â€”</div><div class="kpi-sub" id="kpiCtaPct">â€”</div></div>
+    <div class="kpi-card"><div class="kpi-label">Compraram Upsell 1</div><div class="kpi-value yellow" id="kpiU1">â€”</div><div class="kpi-sub" id="kpiU1Pct">â€”</div></div>
+    <div class="kpi-card"><div class="kpi-label">Compraram Upsell 2</div><div class="kpi-value yellow" id="kpiU2">â€”</div><div class="kpi-sub" id="kpiU2Pct">â€”</div></div>
+    <div class="kpi-card"><div class="kpi-label">Taxa de saÃ­da quiz</div><div class="kpi-value red" id="kpiQuizDrop">â€”</div><div class="kpi-sub">% que nÃ£o completaram</div></div>
   </div>
 
   <div class="grid-2">
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--accent)"></span> Funil por Página</div>
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span> Funil por PÃ¡gina</div>
       <div id="funnelContainer">
-        <div class="state-msg"><div class="icon">📊</div><div>Aguardando dados...</div></div>
+        <div class="state-msg"><div class="icon">ðŸ“Š</div><div>Aguardando dados...</div></div>
       </div>
     </div>
     <div class="card">
       <div class="card-title"><span class="dot" style="background:var(--accent2)"></span> Drop-off por Step do Quiz</div>
       <div id="quizContainer">
-        <div class="state-msg"><div class="icon">🧩</div><div>Aguardando dados...</div></div>
+        <div class="state-msg"><div class="icon">ðŸ§©</div><div>Aguardando dados...</div></div>
       </div>
     </div>
   </div>
@@ -244,19 +317,19 @@
   <div class="grid-2">
     <div class="card" style="margin-bottom: 32px;">
       <div class="card-title"><span class="dot" style="background:var(--yellow)"></span> Volume por Hora do Dia</div>
-      <div id="hourlyContainer"><div class="state-msg"><div class="icon">⏰</div><div>Aguardando dados...</div></div></div>
+      <div id="hourlyContainer"><div class="state-msg"><div class="icon">â°</div><div>Aguardando dados...</div></div></div>
     </div>
 
     <div class="card" style="margin-bottom: 32px;">
-      <div class="card-title"><span class="dot" style="background:var(--green)"></span> Referência de Perguntas (Quiz)</div>
+      <div class="card-title"><span class="dot" style="background:var(--green)"></span> ReferÃªncia de Perguntas (Quiz)</div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--accent); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 1</div>
-          <div style="color: var(--text); opacity: 0.9;">¿Duermes con tu celular...?</div>
+          <div style="color: var(--text); opacity: 0.9;">Â¿Duermes con tu celular...?</div>
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--accent); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 2</div>
-          <div style="color: var(--text); opacity: 0.9;">¿Cómo describirías mejor...</div>
+          <div style="color: var(--text); opacity: 0.9;">Â¿CÃ³mo describirÃ­as mejor...</div>
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--muted); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 3</div>
@@ -264,19 +337,19 @@
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--accent); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 4</div>
-          <div style="color: var(--text); opacity: 0.9;">¿Hace cuánto tiempo...</div>
+          <div style="color: var(--text); opacity: 0.9;">Â¿Hace cuÃ¡nto tiempo...</div>
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--accent); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 5</div>
-          <div style="color: var(--text); opacity: 0.9;">¿Cuáles de estos has probado...</div>
+          <div style="color: var(--text); opacity: 0.9;">Â¿CuÃ¡les de estos has probado...</div>
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--accent); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 6</div>
-          <div style="color: var(--text); opacity: 0.9;">¿En qué momento del día...</div>
+          <div style="color: var(--text); opacity: 0.9;">Â¿En quÃ© momento del dÃ­a...</div>
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--muted); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 7</div>
-          <div style="color: var(--muted); opacity: 0.9;">(Break) Por décadas, la medicina intentó...</div>
+          <div style="color: var(--muted); opacity: 0.9;">(Break) Por dÃ©cadas, la medicina intentÃ³...</div>
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--accent); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 8</div>
@@ -284,16 +357,59 @@
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--accent); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 9</div>
-          <div style="color: var(--text); opacity: 0.9;">¿En qué rango de edad...</div>
+          <div style="color: var(--text); opacity: 0.9;">Â¿En quÃ© rango de edad...</div>
         </div>
         <div style="display: flex; align-items: flex-start; gap: 12px; font-family: var(--mono); font-size: 11px;">
           <div style="color: var(--accent); width: 45px; flex-shrink: 0; text-align: right; font-weight: 700;">Step 10</div>
-          <div style="color: var(--text); opacity: 0.9;">¿De qué manera el tinnitus está...</div>
+          <div style="color: var(--text); opacity: 0.9;">Â¿De quÃ© manera el tinnitus estÃ¡...</div>
         </div>
       </div>
     </div>
   </div>
 </main>
+
+<!-- â”€â”€ Quiz Copy Export â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<section class="copy-export-section" id="quizCopySection">
+  <div class="copy-export-header">
+    <div class="copy-export-title">Exportar Copy do Quiz (JSON)</div>
+    <div class="copy-export-actions">
+      <span class="step-count-badge" id="stepCountBadge"><span id="stepCountNum">â€¦</span> etapas</span>
+      <span class="quiz-copy-status loading" id="qcStatus">âŸ³ carregando quizâ€¦</span>
+      <button class="copy-json-btn" id="copyJsonBtn" title="Copiar JSON completo">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copiar JSON
+      </button>
+    </div>
+  </div>
+
+  <!-- Fallback: shown only when fetch is blocked (file:// protocol) -->
+  <div id="qcFallback" style="display:none; margin-bottom:14px; padding:14px 18px; background:rgba(0,229,255,0.05); border:1px dashed var(--accent); border-radius:10px;  align-items:center; gap:14px; flex-wrap:wrap;">
+    <span style="font-size:20px;">ðŸ“‚</span>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px;">Modo local detectado</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.5;">Em produÃ§Ã£o (HTTP) a extraÃ§Ã£o Ã© automÃ¡tica. Para testar localmente, selecione o arquivo <strong style="color:var(--text)">index.html</strong> do quiz:</div>
+    </div>
+    <label style="cursor:pointer;">
+      <input type="file" id="qcFileInput" accept=".html,.htm" style="display:none;" />
+      <span style="font-family:var(--mono);font-size:11px;font-weight:700;padding:7px 16px;border-radius:6px;border:1px solid var(--accent);background:rgba(0,229,255,0.1);color:var(--accent);display:inline-flex;align-items:center;gap:6px;transition:all .2s;">
+        ðŸ“„ Selecionar index.html
+      </span>
+    </label>
+  </div>
+
+  <div class="json-viewer-card">
+    <div class="json-viewer-topbar">
+      <div class="json-viewer-dot" style="background:#ef4444"></div>
+      <div class="json-viewer-dot" style="background:#f59e0b"></div>
+      <div class="json-viewer-dot" style="background:#10b981"></div>
+      <div class="json-viewer-filename">quiz_copy_export.json</div>
+      <div class="json-viewer-lines" id="jsonLineCount">â€” linhas</div>
+    </div>
+    <div class="json-viewer-body">
+      <pre id="jsonOutput"><span style="color:var(--muted)">// Aguardando extraÃ§Ã£o do quizâ€¦</span></pre>
+    </div>
+  </div>
+</section>
 
 <script>
 (function () {
@@ -304,7 +420,7 @@
   };
 
   function loadCfg() {
-    // credentials hardcoded — nothing to load
+    // credentials hardcoded â€” nothing to load
   }
   function saveCfg() { try { localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); } catch(e){} }
   loadCfg();
@@ -367,12 +483,12 @@
         renderDashboard(rows);
         var el = document.getElementById('lastUpdated');
         el.style.display = 'block';
-        el.textContent = 'Último update: ' + new Date().toLocaleTimeString('pt-BR');
+        el.textContent = 'Ãšltimo update: ' + new Date().toLocaleTimeString('pt-BR');
       })
       .catch(function (err) {
         refreshBtn.classList.remove('loading');
         var errMsg = typeof err === 'string' ? err : (err.message || 'Erro');
-        document.getElementById('funnelContainer').innerHTML = '<div class="state-msg"><div class="icon">🚨</div><div>' + errMsg + '</div></div>';
+        document.getElementById('funnelContainer').innerHTML = '<div class="state-msg"><div class="icon">ðŸš¨</div><div>' + errMsg + '</div></div>';
       });
   }
 
@@ -422,10 +538,10 @@
     
     // Feature 1: Interaction Rate
     var quizStartCount = quizStartSessions.size;
-    var interactionRate = quizCount > 0 ? Math.round((quizStartCount / quizCount) * 100) + '%' : '—';
+    var interactionRate = quizCount > 0 ? Math.round((quizStartCount / quizCount) * 100) + '%' : 'â€”';
     var irColor = quizCount > 0 && (quizStartCount / quizCount >= 0.7) ? 'green' : 'red';
     
-    // Feature 3: Taxa de Conclusão do Quiz
+    // Feature 3: Taxa de ConclusÃ£o do Quiz
     var quizFirstStep = steps[0];
     var quizLastStep  = steps[steps.length - 1];
     var firstStepCount = quizFirstStep ? quizStepMap[quizFirstStep].size : 0;
@@ -435,7 +551,7 @@
     // Original KPIs
     var quizEntry = steps.length > 0 ? quizStepMap[steps[0]].size : 0;
     var quizMax   = steps.length > 0 ? quizStepMap[steps[steps.length-1]].size : 0;
-    var quizDrop  = quizEntry > 0 ? Math.round((1 - quizMax / quizEntry) * 100) + '%' : '—';
+    var quizDrop  = quizEntry > 0 ? Math.round((1 - quizMax / quizEntry) * 100) + '%' : 'â€”';
 
     document.getElementById('kpiSessions').textContent = fmt(quizCount || rows.length);
     
@@ -444,7 +560,7 @@
     document.getElementById('kpiInteractionAbs').textContent = quizStartCount + ' de ' + quizCount + ' iniciaram';
     
     var compEl = document.getElementById('kpiCompletion');
-    compEl.textContent = completionRate !== null ? completionRate + '%' : '—';
+    compEl.textContent = completionRate !== null ? completionRate + '%' : 'â€”';
     compEl.className = 'kpi-value ' + (completionRate >= 60 ? 'green' : completionRate >= 40 ? 'yellow' : 'red');
     document.getElementById('kpiCompletionAbs').textContent = lastStepCount + ' de ' + firstStepCount + ' chegaram ao final';
     document.getElementById('kpiVsl').textContent = fmt(vslCount);
@@ -476,8 +592,8 @@
     var banner = document.getElementById('worstStepBanner');
     if (worstStep !== null && worstDropRate > 0.05) {
         var dropPct = Math.round(worstDropRate * 100);
-        document.getElementById('worstStepTitle').textContent = 'Step ' + worstStep + ' — maior abandono do quiz: ' + dropPct + '%';
-        document.getElementById('worstStepSub').textContent = quizStepMap[steps[steps.indexOf(worstStep)-1]].size + ' usuários chegaram | ' + Math.round(worstDropRate * quizStepMap[steps[steps.indexOf(worstStep)-1]].size) + ' saíram neste step — prioridade de otimização';
+        document.getElementById('worstStepTitle').textContent = 'Step ' + worstStep + ' â€” maior abandono do quiz: ' + dropPct + '%';
+        document.getElementById('worstStepSub').textContent = quizStepMap[steps[steps.indexOf(worstStep)-1]].size + ' usuÃ¡rios chegaram | ' + Math.round(worstDropRate * quizStepMap[steps[steps.indexOf(worstStep)-1]].size) + ' saÃ­ram neste step â€” prioridade de otimizaÃ§Ã£o';
         banner.style.display = 'flex';
     } else {
         banner.style.display = 'none';
@@ -493,7 +609,7 @@
   function renderHourly(hourlyMap, maxVal) {
     var container = document.getElementById('hourlyContainer');
     if (maxVal === 0) {
-        container.innerHTML = '<div class="state-msg"><div class="icon">📭</div><div>Sem dados no período</div></div>';
+        container.innerHTML = '<div class="state-msg"><div class="icon">ðŸ“­</div><div>Sem dados no perÃ­odo</div></div>';
         return;
     }
     var html = '<div style="display:flex;align-items:flex-end;gap:3px;height:80px;padding-top:8px;">';
@@ -523,8 +639,8 @@
       var dropHtml = '';
       if (prevCount !== null && prevCount > 0) {
         var dropRate = Math.round((1 - count / prevCount) * 100);
-        html += '<div class="funnel-arrow">↓ <span class="pct">' + (dropRate > 0 ? '-' + dropRate + '%' : '✓') + ' saíram</span></div>';
-        dropHtml = '<div class="fd ' + (dropRate > 60 ? 'bad' : 'ok') + '">' + (dropRate > 0 ? '-' + dropRate + '%' : '✓') + '</div>';
+        html += '<div class="funnel-arrow">â†“ <span class="pct">' + (dropRate > 0 ? '-' + dropRate + '%' : 'âœ“') + ' saÃ­ram</span></div>';
+        dropHtml = '<div class="fd ' + (dropRate > 60 ? 'bad' : 'ok') + '">' + (dropRate > 0 ? '-' + dropRate + '%' : 'âœ“') + '</div>';
       }
       html += '<div class="funnel-step"><div class="funnel-label">' + PAGE_LABELS[page] + '</div><div class="funnel-bar-wrap">';
       html += '<div class="funnel-bar page-' + page + '" style="width:' + barPct.toFixed(1) + '%">' + (barPct > 18 ? count : '') + '</div></div>';
@@ -547,20 +663,211 @@
       if (i > 0) {
         var prevCount = quizStepMap[steps[i-1]].size;
         var drop = prevCount > 0 ? Math.round((1 - count / prevCount) * 100) : 0;
-        dropHtml = '<div class="quiz-row-drop ' + (drop > 15 ? 'bad' : 'ok') + '">' + (drop > 0 ? '-' + drop + '%' : '—') + '</div>';
+        dropHtml = '<div class="quiz-row-drop ' + (drop > 15 ? 'bad' : 'ok') + '">' + (drop > 0 ? '-' + drop + '%' : 'â€”') + '</div>';
       }
       var avg = Math.round(stepAvgTime[step]);
-      var avgHtml = !isNaN(avg) ? '<div class="quiz-row-time ' + (avg < 4 ? 'bad' : avg > 10 ? 'ok' : '') + '">' + avg + 's</div>' : '<div class="quiz-row-time">—</div>';
+      var avgHtml = !isNaN(avg) ? '<div class="quiz-row-time ' + (avg < 4 ? 'bad' : avg > 10 ? 'ok' : '') + '">' + avg + 's</div>' : '<div class="quiz-row-time">â€”</div>';
       html += '<div class="quiz-row"><div class="quiz-row-num">Step ' + step + '</div><div class="quiz-row-bar-wrap"><div class="quiz-row-bar" style="width:' + barPct.toFixed(1) + '%"></div></div><div class="quiz-row-count">' + fmt(count) + '</div>' + dropHtml + avgHtml + '</div>';
     });
     container.innerHTML = html + '</div>';
   }
 
   function fmt(n) { return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n); }
-  function pct(a, b) { if (!b) return '—'; return Math.round((a / b) * 100) + '%'; }
+  function pct(a, b) { if (!b) return 'â€”'; return Math.round((a / b) * 100) + '%'; }
 
   if (cfg.url && cfg.key) loadData(); else setupBanner.style.display = 'flex';
   setInterval(loadData, 60000);
+})();
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   QUIZ COPY EXTRACTOR
+   Fetches ../index.html (same origin, relative path), parses it in a
+   temporary DOM, and builds a structured JSON with every step's ordered
+   text blocks and image URLs.
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€*/
+(function () {
+  'use strict';
+
+  var STATUS_EL    = document.getElementById('qcStatus');
+  var OUTPUT_EL    = document.getElementById('jsonOutput');
+  var LINES_EL     = document.getElementById('jsonLineCount');
+  var COUNT_EL     = document.getElementById('stepCountNum');
+  var COPY_BTN     = document.getElementById('copyJsonBtn');
+  var FALLBACK_EL  = document.getElementById('qcFallback');
+  var FILE_INPUT   = document.getElementById('qcFileInput');
+
+  /* â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  function setStatus(msg, cls) {
+    STATUS_EL.textContent = msg;
+    STATUS_EL.className = 'quiz-copy-status ' + (cls || '');
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function collectImages(root) {
+    var imgs = [];
+    root.querySelectorAll('img').forEach(function (img) {
+      var src = img.getAttribute('src') || img.getAttribute('data-src') || '';
+      if (src && src.trim()) imgs.push(src.trim());
+    });
+    return imgs;
+  }
+
+  function detectStepType(section) {
+    if (section.classList.contains('loading-screen')) return 'loading';
+    if (section.classList.contains('results-screen')) return 'results';
+    if (section.querySelector('.break-content')) return 'break';
+    if (section.querySelector('.multi-select-container')) return 'multi_select';
+    if (section.querySelector('.options-grid')) return 'single_select_grid';
+    if (section.querySelector('.options-list')) return 'single_select';
+    return 'content';
+  }
+
+  function parseStep(section, stepIndex) {
+    var id   = section.id || ('step_' + stepIndex);
+    var type = detectStepType(section);
+
+    var textBlocks = [];
+    var seen = new Set();
+    section.querySelectorAll(
+      'h1,h2,h3,p,li,button.primary-btn,a.cta-button,.sub-instruction,.subtitle,.diagnosis-row,.result-badge'
+    ).forEach(function (el) {
+      var t = (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (t.length < 2 || seen.has(t)) return;
+      seen.add(t);
+      textBlocks.push(t);
+    });
+
+    var options = [];
+    section.querySelectorAll('.option-btn, .custom-checkbox').forEach(function (el) {
+      var t = (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (t && !options.includes(t)) options.push(t);
+    });
+
+    var images = collectImages(section);
+    var obj = { step_id: id, step_index: stepIndex, step_type: type, text_blocks: textBlocks };
+    if (options.length) obj.options = options;
+    if (images.length)  obj.images  = images;
+    return obj;
+  }
+
+  /* â”€â”€ Syntax highlighter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  function highlight(json) {
+    return json.replace(
+      /("(?:[^"\\]|\\.)*")\s*:|"((?:[^"\\]|\\.)*)"|(\b(?:true|false)\b)|(\bnull\b)|([\d.\-]+(?!["\w]))|([{}\[\],:])/g,
+      function (m, key, str, bool, nul, num, sym) {
+        if (key !== undefined) return '<span class="jt-key">' + escHtml(key) + '</span>:';
+        if (str !== undefined) {
+          var v = escHtml('"' + str + '"');
+          return (/^https?:\/\//.test(str) || str.startsWith('images/'))
+            ? '<span class="jt-url">' + v + '</span>'
+            : '<span class="jt-str">' + v + '</span>';
+        }
+        if (bool !== undefined) return '<span class="jt-bool">' + bool + '</span>';
+        if (nul  !== undefined) return '<span class="jt-null">null</span>';
+        if (num  !== undefined) return '<span class="jt-num">' + num + '</span>';
+        if (sym  !== undefined) return '<span class="jt-symbol">' + sym + '</span>';
+        return m;
+      }
+    );
+  }
+
+  /* â”€â”€ Core parser â€” call with raw HTML string â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  var lastJsonRaw = '';
+
+  function processHtml(html, sourceName) {
+    var parser = new DOMParser();
+    var doc    = parser.parseFromString(html, 'text/html');
+    var allSections = doc.querySelectorAll('section[id^="step"]');
+    if (allSections.length === 0) throw new Error('Nenhum step encontrado no arquivo.');
+
+    var steps = [];
+    allSections.forEach(function (s, i) { steps.push(parseStep(s, i + 1)); });
+
+    var payload = {
+      _meta: {
+        source:       sourceName || 'index.html',
+        extracted_at: new Date().toISOString(),
+        total_steps:  steps.length,
+        generator:    'NST Analytics Â· Quiz Copy Extractor v1'
+      },
+      steps: steps
+    };
+
+    lastJsonRaw = JSON.stringify(payload, null, 2);
+    OUTPUT_EL.innerHTML = highlight(lastJsonRaw);
+    LINES_EL.textContent = lastJsonRaw.split('\n').length + ' linhas';
+    COUNT_EL.textContent = steps.length;
+    setStatus('âœ“ atualizado ' + new Date().toLocaleTimeString('pt-BR'), 'ok');
+    FALLBACK_EL.style.display = 'none';
+  }
+
+  /* â”€â”€ Fetch path (HTTP/production) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  function extractQuiz() {
+    setStatus('âŸ³ buscando quizâ€¦', 'loading');
+    fetch('index.html?_=' + Date.now())
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then(function (html) { processHtml(html, 'index.html'); })
+      .catch(function () {
+        /* file:// blocked â€” show manual file-picker fallback */
+        setStatus('âš  modo local â€” selecione o arquivo', 'loading');
+        FALLBACK_EL.style.display = 'flex';
+        OUTPUT_EL.innerHTML = '<span style="color:var(--muted)">// Selecione index.html acima para gerar o JSON localmente.\n// Em produÃ§Ã£o (HTTP) a extraÃ§Ã£o Ã© automÃ¡tica.</span>';
+      });
+  }
+
+  /* â”€â”€ File API fallback (file:// / local) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  if (FILE_INPUT) {
+    FILE_INPUT.addEventListener('change', function (e) {
+      var file = e.target.files && e.target.files[0];
+      if (!file) return;
+      setStatus('âŸ³ lendo arquivoâ€¦', 'loading');
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        try { processHtml(evt.target.result, file.name); }
+        catch (err) {
+          setStatus('âœ— erro: ' + err.message, 'err');
+          OUTPUT_EL.innerHTML = '<span style="color:var(--red)">' + escHtml('// Erro: ' + err.message) + '</span>';
+        }
+      };
+      reader.onerror = function () { setStatus('âœ— erro ao ler arquivo', 'err'); };
+      reader.readAsText(file);
+    });
+  }
+
+  /* â”€â”€ Clipboard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  COPY_BTN.addEventListener('click', function () {
+    if (!lastJsonRaw) return;
+    var doWrite = navigator.clipboard && navigator.clipboard.writeText
+      ? navigator.clipboard.writeText(lastJsonRaw)
+      : (function () {
+          var ta = document.createElement('textarea');
+          ta.value = lastJsonRaw;
+          ta.style.cssText = 'position:fixed;opacity:0;';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); document.body.removeChild(ta);
+          return Promise.resolve();
+        })();
+    doWrite.then(function () {
+      COPY_BTN.classList.add('copied');
+      COPY_BTN.textContent = 'âœ“ Copiado!';
+      setTimeout(function () {
+        COPY_BTN.classList.remove('copied');
+        COPY_BTN.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar JSON';
+      }, 2000);
+    }).catch(function () {
+      alert('NÃ£o foi possÃ­vel copiar automaticamente. Selecione o JSON manualmente.');
+    });
+  });
+
+  /* â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  extractQuiz();
+  document.getElementById('refreshBtn').addEventListener('click', extractQuiz);
 })();
 </script>
 </body>
