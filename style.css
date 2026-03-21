@@ -103,7 +103,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 1rem 0 3rem;
+    padding: 130px 0 3rem; /* 130px to guarantee it clears the fixed header on mobile and desktop */
     position: relative;
 }
 
@@ -370,7 +370,7 @@ body {
 
 .break-text p {
     margin-bottom: 1rem;
-    color: #cbd5e1;
+    color: var(--text-muted);
     font-size: 1.05rem;
 }
 
