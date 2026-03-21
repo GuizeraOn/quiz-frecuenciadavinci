@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -729,28 +729,43 @@
     var id   = section.id || ('step_' + stepIndex);
     var type = detectStepType(section);
 
-    var textBlocks = [];
+    var blocks = [];
     var seen = new Set();
-    section.querySelectorAll(
-      'h1,h2,h3,p,li,button.primary-btn,a.cta-button,.sub-instruction,.subtitle,.diagnosis-row,.result-badge'
-    ).forEach(function (el) {
+    
+    // Select all relevant elements at once so querySelectorAll returns them in exact DOM order.
+    var elements = section.querySelectorAll(
+      'h1, h2, h3, p, li, button.primary-btn, a.cta-button, .sub-instruction, .subtitle, .diagnosis-row, .result-badge, img, .option-btn, .custom-checkbox'
+    );
+
+    elements.forEach(function (el) {
+      // Handle images
+      if (el.tagName && el.tagName.toLowerCase() === 'img') {
+        var src = el.getAttribute('src') || el.getAttribute('data-src') || '';
+        if (src && src.trim() && !seen.has(src)) {
+          seen.add(src);
+          blocks.push({ type: 'image', content: src.trim() });
+        }
+        return;
+      }
+
+      // Handle text and options
       var t = (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
       if (t.length < 2 || seen.has(t)) return;
       seen.add(t);
-      textBlocks.push(t);
+
+      if (el.classList.contains('option-btn') || el.classList.contains('custom-checkbox')) {
+        blocks.push({ type: 'option', content: t });
+      } else {
+        blocks.push({ type: 'text', content: t });
+      }
     });
 
-    var options = [];
-    section.querySelectorAll('.option-btn, .custom-checkbox').forEach(function (el) {
-      var t = (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
-      if (t && !options.includes(t)) options.push(t);
-    });
-
-    var images = collectImages(section);
-    var obj = { step_id: id, step_index: stepIndex, step_type: type, text_blocks: textBlocks };
-    if (options.length) obj.options = options;
-    if (images.length)  obj.images  = images;
-    return obj;
+    return { 
+      step_id: id, 
+      step_index: stepIndex, 
+      step_type: type, 
+      blocks: blocks 
+    };
   }
 
   /* â”€â”€ Syntax highlighter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
