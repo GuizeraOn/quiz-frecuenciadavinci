@@ -815,16 +815,17 @@ body {
 }
 
 .whatsapp-audio-bubble {
-    background-color: #E2FFC7; /* WhatsApp light green */
+    background-color: #e2ffc7; /* WhatsApp light green */
     border-radius: 12px;
-    border-top-left-radius: 0; /* Tail effect */
-    padding: 10px 14px;
+    border-top-left-radius: 0; 
+    padding: 12px 16px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     position: relative;
-    max-width: 98%;
+    max-width: 320px; /* More natural width for a voice note */
+    width: fit-content;
 }
 
 .whatsapp-audio-bubble::before {
@@ -893,9 +894,9 @@ body {
 }
 
 @keyframes waPulse {
-    0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(37, 211, 102, 0.6)); }
-    50% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(37, 211, 102, 0.4)); color: #128C7E; }
-    100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(37, 211, 102, 0)); }
+    0% { filter: drop-shadow(0 0 0 rgba(37, 211, 102, 0)); color: #8fa0a8; }
+    50% { filter: drop-shadow(0 0 8px rgba(37, 211, 102, 0.4)); color: #128C7E; }
+    100% { filter: drop-shadow(0 0 0 rgba(37, 211, 102, 0)); color: #8fa0a8; }
 }
 
 .wa-play-btn.playing {
