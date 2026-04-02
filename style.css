@@ -186,7 +186,8 @@ body {
     letter-spacing: 0.15em;
     color: var(--accent-neon);
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
     display: block;
     text-align: center;
 }
@@ -198,7 +199,7 @@ body.step1-theme {
 }
 
 body.step1-theme .quiz-main {
-    padding-top: 110px; /* Reduced from 130px */
+    padding-top: 90px; /* Alinhado para reduzir o overlap e espaço vazio */
 }
 
 body.step1-theme .logo-container {
