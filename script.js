@@ -16,9 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Esconder o header ao final do quiz
     const quizHeader = document.getElementById('quizHeader');
 
-    // Inicializa a navegação
     setupNavigation();
     setupMultiSelectValidation();
+    
+    // Initialize Step 1 theme if starting on step 1
+    if (document.getElementById('step1').classList.contains('active')) {
+        document.body.classList.add('step1-theme');
+    }
 
     var stepEnteredAt = Date.now();
     var lastStep = null;
@@ -110,6 +114,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             updateProgress(targetId);
+            
+            // Handle step-specific themes (e.g. Dark theme for Step 1)
+            if (targetId === 'step1') {
+                document.body.classList.add('step1-theme');
+            } else {
+                document.body.classList.remove('step1-theme');
+            }
 
             // Checar comportamentos especiais baseados na tela destino
             if (targetId === 'step11-loading') {
