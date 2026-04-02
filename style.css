@@ -197,6 +197,15 @@ body.step1-theme {
     transition: background-color 0.5s ease;
 }
 
+body.step1-theme .quiz-main {
+    padding-top: 110px; /* Reduced from 130px */
+}
+
+body.step1-theme .logo-container {
+    padding-top: 1rem !important;
+    padding-bottom: 0.75rem !important;
+}
+
 body.step1-theme .quiz-header {
     background-color: var(--bg-dark-night) !important;
     transition: background-color 0.5s ease;
