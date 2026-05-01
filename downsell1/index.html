@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Espera! Oferta Especial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header / Faixa no topo */
+        .alert-bar {
+            width: 100%;
+            background-color: #dc2626; /* Rojo sólido */
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 10px;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            animation: pulse-light 2s infinite ease-in-out;
+            box-sizing: border-box;
+        }
+
+        @keyframes pulse-light {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.9; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* H1 - Título Principal */
+        .headline {
+            font-size: 28px;
+            font-weight: 800;
+            color: #000000;
+            line-height: 1.2;
+            margin: 20px 0 30px 0;
+        }
+
+        @media (min-width: 768px) {
+            .headline {
+                font-size: 36px;
+            }
+        }
+
+        /* Texto do Corpo */
+        .body-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 30px;
+            max-width: 650px;
+        }
+
+        .body-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight-bold {
+            font-weight: 700;
+            color: #000000;
+        }
+
+        /* Bloco de Preço / Oferta */
+        .price-box {
+            background-color: #f9fafb;
+            border: 2px dashed #d1d5db;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #9ca3af;
+            font-size: 20px;
+        }
+
+        .new-price {
+            font-size: 48px;
+            font-weight: 800;
+            color: #10b981;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .guarantee {
+            font-size: 14px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        /* Widget Hotmart */
+        .decision-zone {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Faixa no topo -->
+    <div class="alert-bar">
+        🚨 ¡ESPERA! Esta es tu última oportunidad antes de cerrar tu pedido...
+    </div>
+
+    <div class="container">
+        <!-- H1 - Título Principal -->
+        <h1 class="headline">
+            Entiendo. Quizás $17 dólares no estaba en tu presupuesto hoy...
+        </h1>
+
+        <!-- Texto do Corpo -->
+        <div class="body-text">
+            <p>Pero sé lo importante que es para ti silenciar ese zumbido lo más rápido posible.</p>
+
+            <p>Como te expliqué, el cortisol acumulado en tu cerebro va a hacer que la Frecuencia Da Vinci tarde mucho más en penetrar y darte resultados. No quiero que el dinero sea un obstáculo para tu recuperación total.</p>
+
+            <p>Por eso, he decidido hacer algo que mi equipo financiero me desaconsejó, y que solo verás en esta página por única vez:</p>
+
+            <p class="highlight-bold">Voy a asumir parte del costo por ti. Te daré acceso completo e inmediato al Acelerador de Silencio Nocturno (incluyendo la guía Reconectados) con un 50% DE DESCUENTO ESTRICTO.</p>
+
+            <p>En lugar de los $17 que pagan los demás, hoy puedes llevarte el protocolo completo por solo $8.50. Un único pago, sin cargos extra, y con la misma garantía de 30 días.</p>
+
+            <p class="highlight-bold">Es menos de lo que cuesta un desayuno, a cambio de limpiar tu cerebro y acelerar tu silencio.</p>
+        </div>
+
+        <!-- Bloco de Preço -->
+        <div class="price-box">
+            <span class="old-price">Precio Normal: $17.00</span>
+            <span class="new-price">$8.50</span>
+            <div class="guarantee">
+                🛡️ Garantía total de 30 días incluida
+            </div>
+        </div>
+
+        <!-- Botão Widget Hotmart -->
+        <div class="decision-zone">
+            <!-- HOTMART - Sales Funnel Widget -->
+            <div id="hotmart-sales-funnel"></div>
+
+            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+            <script>
+            if (typeof checkoutElements !== 'undefined') {
+                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+            } else {
+                window.addEventListener('load', function() {
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+                });
+            }
+            </script>
+        </div>
+
+    </div>
+
+    <script>var PAGE_ID='downsell1';</script>
+    <script src="../tracker.js"></script>
+</body>
+</html>

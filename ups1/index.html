@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesando tu acceso...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .upsell-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px 20px 40px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 1. La Barra de Alerta (O "Disfarce") */
+        .alert-bar {
+            width: 100%;
+            background-color: #fee2e2; /* Rojo claro suave */
+            border: 2px solid #ef4444;
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .alert-bar strong {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            color: #991b1b;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        .alert-bar p {
+            margin: 0 0 20px 0;
+            font-size: 15px;
+            color: #7f1d1d;
+            font-weight: 600;
+        }
+        .progress-container {
+            background-color: #e5e7eb;
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .progress-bar {
+            background-color: #10b981; /* Verde */
+            height: 100%;
+            width: 85%; /* Simula carregamento travado em 85% */
+            border-radius: 10px;
+            animation: pulse-bar 2s infinite ease-in-out;
+        }
+        @keyframes pulse-bar {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        @media (min-width: 768px) {
+            .alert-bar strong {
+                font-size: 26px;
+            }
+        }
+
+        /* 4. O Player de Vídeo */
+        .video-box {
+            width: 100%;
+            margin-bottom: 10px; /* Pouquíssimo espaço abaixo para não denunciar */
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 5. A Zona de Decisão */
+        .decision-zone {
+            display: none; /* Começa oculta */
+            width: 100%;
+            max-width: 600px;
+            margin-top: 50px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="upsell-container">
+        <!-- 1. La Barra de Alerta (O "Disfarce") -->
+        <div class="alert-bar">
+            <strong>⚠️ ¡ATENCIÓN! No cierres esta página — estamos creando tu acceso.</strong>
+            <p>Cerrar esta ventana puede causar errores en tu orden.</p>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- 3. A Sub-headline (A Ponte para o Vídeo) -->
+        <p class="sub-headline" style="font-size: 18px; font-weight: 700; color: #000000; text-align: center; margin: 0 0 25px 0; line-height: 1.4; max-width: 600px; letter-spacing: -0.02em;">Mientras nuestro sistema prepara tu área de miembros, mira tu primera clase obligatoria aquí abajo:</p>
+
+        <!-- 4. O Player de Vídeo (O Centro de Conversão) -->
+        <div class="video-box">
+            <vturb-smartplayer id="vid-69c142df0817c06e8a7de7ab" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> 
+            <script type="text/javascript"> 
+                var s=document.createElement("script"); 
+                s.src="https://scripts.converteai.net/a3fcee30-d9a0-4d5b-8504-c73196639865/players/69c142df0817c06e8a7de7ab/v4/player.js", 
+                s.async=!0,
+                document.head.appendChild(s); 
+            </script>
+        </div>
+
+        <!-- 5. A Zona de Decisão (Aparece Apenas aos 7:35) -->
+        <div class="decision-zone" id="decision-zone">
+            <!-- HOTMART - Sales Funnel Widget -->
+            <!--- sales funnel container --->
+            <div id="hotmart-sales-funnel"></div>
+
+            <!--- script load and setup --->
+            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+            <script>
+            if (typeof checkoutElements !== 'undefined') {
+                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+            } else {
+                window.addEventListener('load', function() {
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+                });
+            }
+            </script>
+            <!-- HOTMART - Sales Funnel Widget -->
+        </div>
+
+    </div>
+
+    <!-- Script de Delay (7 minutos e 35 segundos = 455 segundos) -->
+    <script>
+        const DELAY_IN_SECONDS = 235;
+        const DELAY_IN_MS = DELAY_IN_SECONDS * 1000;
+
+        setTimeout(function() {
+            var decisionZone = document.getElementById('decision-zone');
+            if(decisionZone) {
+                decisionZone.style.display = 'block';
+            }
+        }, DELAY_IN_MS);
+    </script>
+    <script>var PAGE_ID='upsell1';</script>
+    <script src="../tracker.js"></script>
+</body>
+</html>
