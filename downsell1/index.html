@@ -4,180 +4,330 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Espera! Oferta Especial</title>
+    <meta name="description" content="Última oportunidad: acceso completo a El Truco Derrite-Placa de 15 Segundos a mitad de precio.">
+    <link rel="icon" type="image/webp" href="../favicon/favicon-96x96.webp" sizes="96x96">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #ffffff;
-            color: #111111;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        /* ── Reset ── */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #1A1A1A;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Header / Faixa no topo */
+        /* ── Elemento 1: Barra de Alerta Superior ── */
+        @keyframes alertPulse {
+            0%   { opacity: 1; }
+            50%  { opacity: 0.85; }
+            100% { opacity: 1; }
+        }
+
         .alert-bar {
             width: 100%;
-            background-color: #dc2626; /* Rojo sólido */
-            color: #ffffff;
+            background-color: #CC0000;
+            color: #FFFFFF;
             text-align: center;
-            padding: 15px 10px;
-            font-weight: 800;
-            font-size: 16px;
+            padding: 24px 16px;
+            font-weight: 700;
+            font-size: 18px;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
-            animation: pulse-light 2s infinite ease-in-out;
-            box-sizing: border-box;
+            line-height: 1.4;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: alertPulse 2.5s ease-in-out infinite;
         }
 
-        @keyframes pulse-light {
-            0% { opacity: 0.9; }
-            50% { opacity: 1; }
-            100% { opacity: 0.9; }
-        }
-
+        /* ── Container Principal ── */
         .container {
             width: 100%;
-            max-width: 700px;
-            padding: 40px 20px;
-            box-sizing: border-box;
+            max-width: 680px;
+            padding: 32px 20px 48px;
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        /* ── Elemento 2: Headline Principal ── */
+        .headline {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1A1A1A;
+            line-height: 1.3;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        /* ── Elemento 3: Subheadline ── */
+        .subheadline {
+            font-size: 18px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.6;
+            text-align: center;
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+
+        /* ── Blocos de Corpo ── */
+        .body-block {
+            font-size: 17px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.7;
+            text-align: left;
+            margin-top: 24px;
+            width: 100%;
+        }
+
+        /* ── Elemento 4: Caixa de Contexto / Problema ── */
+        .context-card {
+            background-color: #FFF3E0;
+            border-left: 4px solid #FF8C00;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+            width: 100%;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #333333;
+            text-align: left;
+        }
+
+        /* ── Elemento 5: Caixa de Oferta / Preço ── */
+        .offer-card {
+            background-color: #F0FFF4;
+            border: 2px solid #2E7D32;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+            width: 100%;
             text-align: center;
         }
 
-        /* H1 - Título Principal */
-        .headline {
-            font-size: 28px;
-            font-weight: 800;
-            color: #000000;
-            line-height: 1.2;
-            margin: 20px 0 30px 0;
-        }
-
-        @media (min-width: 768px) {
-            .headline {
-                font-size: 36px;
-            }
-        }
-
-        /* Texto do Corpo */
-        .body-text {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #374151;
-            margin-bottom: 30px;
-            max-width: 650px;
-        }
-
-        .body-text p {
+        .offer-card .offer-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333333;
+            text-align: left;
             margin-bottom: 20px;
         }
 
-        .highlight-bold {
-            font-weight: 700;
-            color: #000000;
-        }
-
-        /* Bloco de Preço / Oferta */
-        .price-box {
-            background-color: #f9fafb;
-            border: 2px dashed #d1d5db;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            width: 100%;
-            box-sizing: border-box;
+        .offer-card .price-line {
+            margin-top: 16px;
         }
 
         .old-price {
             text-decoration: line-through;
-            color: #9ca3af;
-            font-size: 20px;
+            color: #999999;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 4px;
         }
 
         .new-price {
-            font-size: 48px;
-            font-weight: 800;
-            color: #10b981;
+            font-size: 42px;
+            font-weight: 900;
+            color: #2E7D32;
             display: block;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
-        .guarantee {
-            font-size: 14px;
-            color: #6b7280;
+        .offer-card .offer-terms {
+            font-size: 15px;
+            color: #555555;
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+
+        /* ── Bloco de Reforço ── */
+        .reinforce-block {
+            font-size: 17px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 1.7;
+            text-align: left;
+            margin: 24px 0;
+            width: 100%;
+        }
+
+        /* ── Elemento 6: Widget de Checkout Hotmart ── */
+        .checkout-zone {
+            width: 100%;
+            margin-top: 24px;
+        }
+
+        /* ── Elemento 9: Linha de Garantia / Segurança ── */
+        .security-line {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-top: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555555;
+            font-style: italic;
         }
 
-        /* Widget Hotmart */
-        .decision-zone {
-            width: 100%;
-            margin-top: 10px;
+        .security-line svg {
+            flex-shrink: 0;
+        }
+
+        /* ── Responsividade Mobile ── */
+        @media (max-width: 768px) {
+            .alert-bar {
+                font-size: 15px;
+                padding: 20px 16px;
+                min-height: 110px;
+            }
+
+            .headline {
+                font-size: 26px;
+            }
+
+            .subheadline {
+                font-size: 16px;
+            }
+
+            .body-block,
+            .context-card,
+            .offer-card .offer-description,
+            .reinforce-block {
+                font-size: 16px;
+            }
+
+            .new-price {
+                font-size: 34px;
+            }
+
+            .container {
+                padding: 24px 16px 40px;
+            }
+
+            .security-line {
+                font-size: 13px;
+            }
+        }
+
+        /* ── Garantia de acessibilidade 60+ ── */
+        @media (max-width: 375px) {
+            .alert-bar {
+                font-size: 14px;
+                padding: 18px 12px;
+            }
+
+            .headline {
+                font-size: 24px;
+            }
+
+            .body-block,
+            .context-card,
+            .reinforce-block {
+                font-size: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Faixa no topo -->
+    <!-- Elemento 1: Barra de Alerta Superior -->
     <div class="alert-bar">
-        🚨 ¡ESPERA! Esta es tu última oportunidad antes de cerrar tu pedido...
+        ⚠ ESPERA — ANTES DE IRTE, TENEMOS ALGO IMPORTANTE QUE DECIRTE
     </div>
 
     <div class="container">
-        <!-- H1 - Título Principal -->
+
+        <!-- Elemento 2: Headline Principal -->
         <h1 class="headline">
-            Entiendo. Quizás $17 dólares no estaba en tu presupuesto hoy...
+            Entendemos que los $17 pueden no ser el momento adecuado.<br>
+            Por eso tomamos una decisión que nunca antes habíamos tomado.
         </h1>
 
-        <!-- Texto do Corpo -->
-        <div class="body-text">
-            <p>Pero sé lo importante que es para ti silenciar ese zumbido lo más rápido posible.</p>
+        <!-- Elemento 3: Subheadline -->
+        <p class="subheadline">
+            Solo por esta vez, y únicamente porque ya eres parte de nuestra familia,
+            vamos a darte acceso completo a <strong>El Truco Derrite-Placa de 15 Segundos</strong>
+            exactamente a la mitad del precio. Sin condiciones. Sin trampa.
+        </p>
 
-            <p>Como te expliqué, el cortisol acumulado en tu cerebro va a hacer que la Frecuencia Da Vinci tarde mucho más en penetrar y darte resultados. No quiero que el dinero sea un obstáculo para tu recuperación total.</p>
-
-            <p>Por eso, he decidido hacer algo que mi equipo financiero me desaconsejó, y que solo verás en esta página por única vez:</p>
-
-            <p class="highlight-bold">Voy a asumir parte del costo por ti. Te daré acceso completo e inmediato al Acelerador de Silencio Nocturno (incluyendo la guía Reconectados) con un 50% DE DESCUENTO ESTRICTO.</p>
-
-            <p>En lugar de los $17 que pagan los demás, hoy puedes llevarte el protocolo completo por solo $8.50. Un único pago, sin cargos extra, y con la misma garantía de 30 días.</p>
-
-            <p class="highlight-bold">Es menos de lo que cuesta un desayuno, a cambio de limpiar tu cerebro y acelerar tu silencio.</p>
+        <!-- Bloque 1: Reconocimiento y Validación -->
+        <div class="body-block">
+            Sabemos que ya diste el paso más valiente hace unos minutos al activar tu protocolo de Frecuencia Da Vinci. Sabemos que estás comprometido con silenciar ese zumbido de una vez por todas. Y precisamente porque te tomaste ese primer paso en serio, no podemos dejarte ir sin darte esta oportunidad de asegurarte de que el protocolo que acabas de adquirir funcione a su máxima potencia posible desde la primera noche que lo uses.
         </div>
 
-        <!-- Bloco de Preço -->
-        <div class="price-box">
-            <span class="old-price">Precio Normal: $17.00</span>
-            <span class="new-price">$8.50</span>
-            <div class="guarantee">
-                🛡️ Garantía total de 30 días incluida
+        <!-- Elemento 4: Caixa de Contexto / Problema (Bloque 2) -->
+        <div class="context-card">
+            Si tienes más de cincuenta años, tu cerebro lleva décadas acumulando una capa de Placa Neurotóxica que actúa como una pared de plomo entre el sonido de la Frecuencia Da Vinci y las células que necesitas reactivar. Sin disolver esa barrera primero, el protocolo de sonido puede tardar meses en producir los resultados que podrías sentir en días. <strong>El Truco Derrite-Placa de 15 Segundos</strong> es la única pieza que falta para que todo lo que acabas de activar funcione al cien por ciento desde esta misma noche.
+        </div>
+
+        <!-- Elemento 5: Caixa de Oferta / Preço (Bloque 3) -->
+        <div class="offer-card">
+            <div class="offer-description">
+                Normalmente, el acceso completo a <strong>El Truco Derrite-Placa de 15 Segundos</strong> junto con todos sus componentes, la videoguía central con las medidas exactas de la receta matutina, El Tónico de Claridad Mental, el manual de El Escudo Anti-Toxinas de 24 Horas, y los tres bonos especiales incluyendo Relaciones en Silencio, la Frecuencia de Sanación Celular y el Bono Secreto de Longevidad, tiene un precio de diecisiete dólares.
+            </div>
+            <p style="font-size: 16px; line-height: 1.7; color: #333333; text-align: left; margin-bottom: 16px;">
+                Hoy, en esta página y solo en este momento, vas a recibir exactamente todo eso, sin quitar ni un solo elemento, sin reducir ni una sola guía, por un único pago de:
+            </p>
+            <div class="price-line">
+                <span class="old-price">$17.00 USD</span>
+                <span class="new-price">$8.50 USD</span>
+            </div>
+            <div class="offer-terms">
+                Un solo pago. Acceso inmediato y completo de por vida. Sin suscripciones. Sin cobros futuros. Sin sorpresas.
             </div>
         </div>
 
-        <!-- Botão Widget Hotmart -->
-        <div class="decision-zone">
+        <!-- Bloque 4: Refuerzo de la Lógica -->
+        <div class="reinforce-block">
+            Piénsalo de esta manera: por menos de lo que cuesta una taza de café en cualquier ciudad, vas a tener en tus manos la receta exacta que disuelve la Placa Neurotóxica de tus vías cerebrales y permite que la Frecuencia Da Vinci entre al cien por ciento en tu cerebro esta misma noche. No estamos hablando de semanas de espera. Estamos hablando de preparar una bebida de quince segundos mañana por la mañana y sentir la diferencia cuando te acuestes mañana por la noche.
+        </div>
+
+        <!-- Bloque 5: Garantía Reforzada -->
+        <div class="reinforce-block">
+            Y si por cualquier razón sientes que no fue lo que esperabas, tienes <strong>trescientos sesenta y cinco días</strong> para pedirnos el reembolso completo de tus ocho dólares con cincuenta centavos. Te lo devolvemos sin preguntas, sin formularios complicados, sin esperas. Y aunque pidas el reembolso, todo el programa es tuyo para siempre. Eso es todo el riesgo que tienes: <strong>ninguno</strong>.
+        </div>
+
+        <!-- Elemento 6: Widget de Checkout Hotmart -->
+        <div class="checkout-zone">
             <!-- HOTMART - Sales Funnel Widget -->
             <div id="hotmart-sales-funnel"></div>
 
             <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
             <script>
             if (typeof checkoutElements !== 'undefined') {
-                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
             } else {
                 window.addEventListener('load', function() {
-                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
                 });
             }
             </script>
+            <!-- END HOTMART -->
+        </div>
+
+        <!-- Elemento 9: Linha de Segurança -->
+        <div class="security-line">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Pago 100% seguro y encriptado. Acceso inmediato tras la confirmación.
         </div>
 
     </div>
