@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Espera! Oferta Especial</title>
-    <meta name="description" content="Última oportunidad: acceso completo al Acelerador Neuro Binaural con 50% de descuento.">
+    <meta name="description" content="Última oportunidad: acceso completo a El Truco Derrite-Placa de 15 Segundos a mitad de precio.">
     <link rel="icon" type="image/webp" href="../favicon/favicon-96x96.webp" sizes="96x96">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* Reset */
+        /* ── Reset ── */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -18,114 +18,358 @@
         }
 
         body {
-            background-color: #FAFAFA;
-            color: #212121;
-            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #111827;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            padding-bottom: 4rem;
         }
 
-        /* Barra de Alerta */
+        /* 1. Attention-grabbing header with pulsing animation */
         @keyframes pulse {
-            0%   { opacity: 1; transform: scale(1); }
-            50%  { opacity: 0.85; transform: scale(1.01); }
-            100% { opacity: 1; transform: scale(1); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
         }
 
         .alert-bar {
             width: 100%;
-            background-color: #D32F2F;
-            color: #FFFFFF;
+            background-color: #dc2626;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             text-align: center;
-            padding: 24px 16px;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .alert-bar-text {
+            color: #ffffff;
+            font-size: 1.25rem;
             font-weight: 900;
-            font-size: 22px;
-            letter-spacing: 0.5px;
-            line-height: 1.4;
             text-transform: uppercase;
-            animation: pulse 2.5s ease-in-out infinite;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        /* Contenedor Principal */
+        @media (min-width: 768px) {
+            .alert-bar-text {
+                font-size: 1.875rem;
+            }
+        }
+
+        /* Icons */
+        .icon {
+            width: 2rem;
+            height: 2rem;
+        }
+        .icon-check {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #16a34a;
+            flex-shrink: 0;
+        }
+        .icon-shield {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: #16a34a;
+        }
+
+        /* Container */
         .container {
+            max-width: 48rem;
             width: 100%;
-            max-width: 800px;
-            padding: 40px 20px 60px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Card */
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        @media (min-width: 768px) {
+            .card { padding: 2.5rem; }
+        }
+
+        /* 2. Brief acknowledgment */
+        .headline {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
             text-align: center;
-            font-size: 20px;
-            line-height: 1.6;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .headline { font-size: 1.875rem; }
         }
 
-        .container p {
-            margin-bottom: 24px;
+        .divider {
+            width: 5rem;
+            height: 0.25rem;
+            background-color: #ef4444;
+            margin: 0 auto 2rem auto;
         }
 
-        .highlight-green {
-            color: #28A745;
+        /* 3. Quick restatement of the core problem/benefit */
+        .text-body {
+            font-size: 1.125rem;
+            color: #374151;
+            line-height: 1.625;
+            margin-bottom: 2rem;
+        }
+        .text-body p {
+            margin-bottom: 1rem;
+        }
+
+        /* 4. State they can get EVERYTHING for 50% off */
+        .offer-box {
+            background-color: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .offer-box { padding: 2rem; }
+        }
+
+        .offer-headline {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #166534;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+        }
+        @media (min-width: 768px) {
+            .offer-headline { font-size: 1.5rem; }
+        }
+
+        .offer-text {
+            text-align: center;
+            font-size: 1.125rem;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .offer-text span.line-through {
+            text-decoration: line-through;
+            color: #ef4444;
             font-weight: 700;
         }
 
-        /* Widget Hotmart Zone */
-        .checkout-zone {
-            width: 100%;
-            margin-top: 32px;
+        .price-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .new-price {
+            font-size: 3.75rem;
+            font-weight: 900;
+            color: #16a34a;
+            display: block;
+            letter-spacing: -0.05em;
+            line-height: 1;
+        }
+        @media (min-width: 768px) {
+            .new-price { font-size: 4.5rem; }
+        }
+        .new-price-currency {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #16a34a;
+        }
+        .price-badge {
+            display: inline-block;
+            margin-top: 0.75rem;
+            background-color: #bbf7d0;
+            color: #14532d;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         }
 
-        /* Responsividad Mobile */
-        @media (max-width: 768px) {
-            .alert-bar {
-                font-size: 18px;
-                padding: 20px 16px;
-            }
+        .benefits-list {
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+        .benefits-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .benefits-list span {
+            color: #1f2937;
+            font-weight: 500;
+        }
 
-            .container {
-                padding: 32px 16px 48px;
-                font-size: 18px;
-            }
+        /* 5. Hotmart widget button container */
+        .checkout-section {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .checkout-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .hotmart-container {
+            width: 100%;
+        }
+
+        /* Footer info guarantees */
+        .footer-guarantee {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .footer-guarantee-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        .footer-guarantee-title p {
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .footer-guarantee-text {
+            color: #6b7280;
+            font-size: 0.75rem;
+            max-width: 28rem;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Rojo con Texto Blanco -->
+    <!-- 1. Attention-grabbing header with pulsing animation -->
     <div class="alert-bar">
-        ¡ESPERA! NO CIERRES ESTA PÁGINA. TENEMOS UNA ÚLTIMA OPORTUNIDAD PARA TI...
+        <h1 class="alert-bar-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+            ¡ESPERA! NO CIERRES ESTA PÁGINA
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+        </h1>
     </div>
 
-    <!-- Cuerpo de la página -->
     <div class="container">
-        <p>Sabemos que recuperar tus noches de sueño y calmar ese constante pitido es algo extremadamente importante para ti y para tu bienestar.</p>
-        
-        <p>También entendemos que el precio puede haber sido un obstáculo imprevisto en este momento, y sinceramente, no queremos que el dinero te impida acelerar tu recuperación.</p>
-        
-        <p>Recuerda: si tu mente consciente sigue levantando un muro de estrés durante el día, tu sanación será mucho más lenta. Con el <strong>Acelerador Neuro Binaural</strong>, logras saltarte esa defensa y le permites a tu cerebro reparar sus vías neuronales de forma automática mientras duermes profundamente, logrando en unas pocas noches lo que podría tomar meses.</p>
-        
-        <p>No queremos que te quedes sin esta herramienta vital.</p>
-        
-        <p>Por eso, si actúas en este preciso momento, en lugar de pagar el precio regular, vas a recibir el acceso completo al programa binaural y a los 5 bonos exclusivos de apoyo, con un <strong>50% DE DESCUENTO REAL</strong>.</p>
-        
-        <p><strong>En lugar de $17 dólares, tu inversión será un único pago de solo <span class="highlight-green">$8.50 dólares</span>.</strong> Es un solo cargo, sin mensualidades ocultas y con acceso inmediato de por vida. Esta página especial no volverá a mostrarse.</p>
+        <div class="card">
+            
+            <!-- 2. Brief acknowledgment -->
+            <h2 class="headline">
+                Sabemos que silenciar ese zumbido constante y recuperar tus noches de sueño es vital para tu paz mental...
+            </h2>
 
-        <!-- Área de Decisión: Widget Hotmart -->
-        <div class="checkout-zone">
-            <!-- HOTMART - Sales Funnel Widget -->
-            <div id="hotmart-sales-funnel"></div>
+            <div class="divider"></div>
 
-            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
-            <script>
-            if (typeof checkoutElements !== 'undefined') {
-                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
-            } else {
-                window.addEventListener('load', function() {
-                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
-                });
-            }
-            </script>
-            <!-- END HOTMART -->
+            <!-- 3. Quick restatement of the core problem/benefit -->
+            <div class="text-body">
+                <p>
+                    Ignorar el estrés y sanar durante el día es difícil por las barreras que levanta tu propia mente. 
+                </p>
+                <p>
+                    El <strong>Acelerador Neuro Binaural</strong> se salta esta barrera y actúa directamente en tu subconsciente mientras duermes, reparando tu red neuronal con cero esfuerzo mientras escuchas el relajante sonido de la lluvia.
+                </p>
+            </div>
+
+            <!-- 4. State they can get EVERYTHING for 50% off -->
+            <div class="offer-box">
+                <h3 class="offer-headline">
+                    Llévate todo a mitad de precio
+                </h3>
+                
+                <p class="offer-text">
+                    No queremos que el precio sea un obstáculo para tu descanso. Por eso, en lugar de pagar <span class="line-through">$17.00</span>, puedes llevarte el Acelerador completo y TODOS los bonos por:
+                </p>
+
+                <div class="price-container">
+                    <span class="new-price">
+                        $8.50<span class="new-price-currency"> USD</span>
+                    </span>
+                    <span class="price-badge">
+                        Pago único • Acceso Inmediato
+                    </span>
+                </div>
+
+                <!-- Benefit Checkmarks -->
+                <div class="benefits-list">
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span>Pistas Binaurales para dormir profundo</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span>Todos los 4 bonos de aceleración y protección</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5. Hotmart widget button container -->
+            <div class="checkout-section">
+                <p class="checkout-label">Elige una opción para continuar:</p>
+                
+                <!-- HOTMART - Sales Funnel Widget -->
+                <div class="hotmart-container">
+                    <div id="hotmart-sales-funnel"></div>
+
+                    <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+                    <script>
+                    if (typeof checkoutElements !== 'undefined') {
+                        checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                    } else {
+                        window.addEventListener('load', function() {
+                            checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                        });
+                    }
+                    </script>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer info guarantees -->
+        <div class="footer-guarantee">
+            <div class="footer-guarantee-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                <p>Cero Riesgo: Garantía de 365 Días</p>
+            </div>
+            <p class="footer-guarantee-text">
+                Tu compra está 100% protegida. Esta garantía incondicional aplica integralmente a esta oferta especial a mitad de precio. Si no estás satisfecho o no ves resultados, te devolvemos tu dinero de ambos productos sin hacer preguntas y conservas el acceso total.
+            </p>
         </div>
     </div>
 
