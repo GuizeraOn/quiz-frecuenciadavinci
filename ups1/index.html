@@ -2,127 +2,139 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procesando tu acceso...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Clase de Bienvenida - NervioZen</title>
+    <meta name="description" content="Tu acceso está en camino, pero antes mira esta clase de bienvenida obligatoria.">
+    <link rel="icon" type="image/webp" href="../favicon/favicon-96x96.webp" sizes="96x96">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            background-color: #ffffff;
-            color: #111111;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
+        :root {
+            --bg: #F4F5F7;
+            --text: #0F172A;
+            --text-secondary: #4A4A4A;
+            --alert-bg: #CC1212;
+            --alert-text: #FFFFFF;
+            --accent-green: #10B981;
+            --font-main: 'Inter', sans-serif;
         }
 
-        .upsell-container {
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Top Warning Bar */
+        .top-bar {
+            background-color: var(--alert-bg);
+            color: var(--alert-text);
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        /* Container & Layout */
+        .container {
             width: 100%;
             max-width: 800px;
-            padding: 20px 20px 40px 20px;
-            box-sizing: border-box;
+            margin: 0 auto;
+            padding: 24px 16px 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* 1. La Barra de Alerta (O "Disfarce") */
-        .alert-bar {
-            width: 100%;
-            background-color: #fee2e2; /* Rojo claro suave */
-            border: 2px solid #ef4444;
-            padding: 25px 20px;
-            border-radius: 15px;
+        /* Headline */
+        .headline {
+            font-size: 24px;
+            font-weight: 900;
             text-align: center;
-            margin-bottom: 35px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 24px;
         }
-        .alert-bar strong {
-            display: block;
-            font-size: 20px;
-            font-weight: 800;
-            color: #991b1b;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-        .alert-bar p {
-            margin: 0 0 20px 0;
-            font-size: 15px;
-            color: #7f1d1d;
-            font-weight: 600;
-        }
-        .progress-container {
-            background-color: #e5e7eb;
-            height: 12px;
-            border-radius: 10px;
-            overflow: hidden;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-        }
-        .progress-bar {
-            background-color: #10b981; /* Verde */
-            height: 100%;
-            width: 85%; /* Simula carregamento travado em 85% */
-            border-radius: 10px;
-            animation: pulse-bar 2s infinite ease-in-out;
-        }
-        @keyframes pulse-bar {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
+        
+        @media (min-width: 768px) {
+            .headline { font-size: 32px; }
         }
 
-        @media (min-width: 768px) {
-            .alert-bar strong {
-                font-size: 26px;
+        .headline span {
+            color: var(--alert-text);
+        }
+
+        /* Video Section */
+        .video-container {
+            width: 100%;
+            max-width: 400px; /* Mobile focused max-width as requested by vturb snippet */
+            position: relative;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: #000;
+            overflow: hidden;
+        }
+
+        @media (max-width: 480px) {
+            .video-container {
+                max-width: 100%;
+                border-radius: 8px;
             }
         }
 
-        /* 4. O Player de Vídeo */
-        .video-box {
-            width: 100%;
-            margin-bottom: 10px; /* Pouquíssimo espaço abaixo para não denunciar */
-            display: flex;
-            justify-content: center;
-        }
-
-        /* 5. A Zona de Decisão */
-        .decision-zone {
-            display: none; /* Começa oculta */
+        /* Delay Section */
+        #delayed-offer-container {
+            display: none; /* Hidden strictly by default */
             width: 100%;
             max-width: 600px;
-            margin-top: 50px;
-            animation: fadeIn 1.5s ease;
+            animation: fadeIn 0.8s ease forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Block B: Hotmart Widget Wrapper */
+        .hotmart-widget-container {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="upsell-container">
-        <!-- 1. La Barra de Alerta (O "Disfarce") -->
-        <div class="alert-bar">
-            <strong>⚠️ ¡ATENCIÓN! No cierres esta página — estamos creando tu acceso.</strong>
-            <p>Cerrar esta ventana puede causar errores en tu orden.</p>
-            <div class="progress-container">
-                <div class="progress-bar"></div>
-            </div>
+    <!-- Header Alert -->
+    <div class="top-bar">
+        ⚠️ ¡ESPERA! Tu orden aún no está completa. No cierres ni actualices esta página.
+    </div>
+
+    <div class="container">
+        <!-- Pre-Headline -->
+        <div style="font-size: 12px; font-weight: 800; color: #64748B; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; text-align: center; border-bottom: 1px solid #CBD5E1; padding-bottom: 8px; width: max-content; margin-left: auto; margin-right: auto;">
+            PASO 2 DE 3: PERSONALIZANDO TU ACCESO... <span style="color: #10B981; font-size: 14px;">●</span>
         </div>
 
-        <!-- 3. A Sub-headline (A Ponte para o Vídeo) -->
-        <p class="sub-headline" style="font-size: 18px; font-weight: 700; color: #000000; text-align: center; margin: 0 0 25px 0; line-height: 1.4; max-width: 600px; letter-spacing: -0.02em;">Mientras nuestro sistema prepara tu área de miembros, mira tu primera clase obligatoria aquí abajo:</p>
+        <!-- Headline -->
+        <h1 class="headline" style="color: #0F172A; max-width: 700px;">
+            Por favor, mira este breve video de <span style="color: #DC2626;">bienvenida e instrucciones</span> antes de acceder a tu material:
+        </h1>
 
-        <!-- 4. O Player de Vídeo (O Centro de Conversão) -->
-        <div class="video-box">
+        <!-- Video Vturb -->
+        <div class="video-container">
             <vturb-smartplayer id="vid-69fba667bd1dd61e3517bdf8" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
             <script type="text/javascript">
                 var s = document.createElement("script");
@@ -132,35 +144,35 @@
             </script>
         </div>
 
-        <!-- 5. A Zona de Decisão (Aparece Apenas aos 7:35) -->
-        <div class="decision-zone" id="decision-zone">
-            <!-- HOTMART - Sales Funnel Widget -->
-            <!--- sales funnel container --->
-            <div id="hotmart-sales-funnel"></div>
-
-            <!--- script load and setup --->
-            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
-            <script>
-            if (typeof checkoutElements !== 'undefined') {
-                checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
-            } else {
-                window.addEventListener('load', function() {
-                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
-                });
-            }
-            </script>
-            <!-- HOTMART - Sales Funnel Widget -->
+        <!-- Delay Offer -->
+        <div id="delayed-offer-container">
+            <!-- Block B: Hotmart Upsell Widget -->
+            <div class="hotmart-widget-container" id="widget-tracker">
+                <!-- HOTMART - Sales Funnel Widget -->
+                <div id="hotmart-sales-funnel"></div>
+                
+                <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+                <script>
+                if (typeof checkoutElements !== 'undefined') {
+                    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                } else {
+                    window.addEventListener('load', function() {
+                        checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                    });
+                }
+                </script>
+                <!-- HOTMART - Sales Funnel Widget -->
+            </div>
         </div>
-
     </div>
 
-    <!-- Script de Delay (7 minutos e 35 segundos = 455 segundos) -->
+    <!-- Script de Delay (5 minutos e 35 segundos = 335 segundos) -->
     <script>
         const DELAY_IN_SECONDS = 335;
         const DELAY_IN_MS = DELAY_IN_SECONDS * 1000;
 
         setTimeout(function() {
-            var decisionZone = document.getElementById('decision-zone');
+            var decisionZone = document.getElementById('delayed-offer-container');
             if(decisionZone) {
                 decisionZone.style.display = 'block';
             }
