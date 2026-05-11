@@ -4,6 +4,43 @@
  */
 
 (function () {
+  /* ── 0. UTM REMAPPING (Fixes wrong ad links on the fly) ───── */
+  (function() {
+    var url = new URL(window.location.href);
+    var p = url.searchParams;
+    
+    var oldSrc = p.get('utm_source');
+    var oldMed = p.get('utm_medium');
+    var oldCmp = p.get('utm_campaign');
+    var oldCnt = p.get('utm_content');
+
+    // Only remap if we see the old pattern (utm_source is likely a campaign name, not 'FB')
+    if (oldSrc && oldSrc !== 'FB' && oldMed && oldCmp) {
+      var cmpName = oldSrc;
+      var adsName = oldMed;
+      var adName  = oldCmp;
+      var placement = '';
+      
+      if (oldCnt && oldCnt.indexOf('/') !== -1) {
+        placement = oldCnt.split('/')[1] || '';
+      } else {
+        placement = oldCnt || '';
+      }
+
+      // New Mapping
+      p.set('utm_source', 'FB');
+      p.set('utm_campaign', cmpName + '|'); 
+      p.set('utm_medium', adsName + '|');
+      p.set('utm_content', adName + '|');
+      p.set('utm_term', placement);
+      
+      var xcod = 'FBhQwK21wXxR' + cmpName + '|hQwK21wXxR' + adsName + '|hQwK21wXxR' + adName + '|hQwK21wXxR' + placement;
+      p.set('xcod', xcod);
+
+      window.history.replaceState({}, '', url.pathname + '?' + p.toString() + url.hash);
+    }
+  })();
+  /* ────────────────────────────────────────────────────────── */
   /* ── CONFIG — EDIT THESE ─────────────────────────────────── */
   var SUPABASE_URL      = '';
   var SUPABASE_ANON_KEY = '';
