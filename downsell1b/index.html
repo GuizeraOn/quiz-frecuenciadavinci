@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Última Oportunidad! Oferta Especial</title>
+    <meta name="description" content="No cierres esta página: última oportunidad para obtener el Activador de Conductividad Neural al precio mínimo.">
+    <link rel="icon" type="image/webp" href="../favicon/favicon-96x96.webp" sizes="96x96">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Utmify Pixel Code -->
+    <script>
+      window.pixelId = "6a01f0f80bff4fd210a3405f";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+    <!-- End Utmify Pixel Code -->
+    <style>
+        /* ── Reset ── */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #111827;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding-bottom: 4rem;
+        }
+
+        /* 1. Attention-grabbing header with pulsing animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+
+        .alert-bar {
+            width: 100%;
+            background-color: #dc2626;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .alert-bar-text {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .alert-bar-text {
+                font-size: 1.875rem;
+            }
+        }
+
+        /* Icons */
+        .icon {
+            width: 2rem;
+            height: 2rem;
+        }
+        .icon-check {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #16a34a;
+            flex-shrink: 0;
+        }
+        .icon-shield {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: #16a34a;
+        }
+
+        /* Container */
+        .container {
+            max-width: 48rem;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Card */
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        @media (min-width: 768px) {
+            .card { padding: 2.5rem; }
+        }
+
+        /* 2. Brief acknowledgment */
+        .headline {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            text-align: center;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .headline { font-size: 1.875rem; }
+        }
+
+        .divider {
+            width: 5rem;
+            height: 0.25rem;
+            background-color: #ef4444;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* 3. Quick restatement of the core problem/benefit */
+        .text-body {
+            font-size: 1.125rem;
+            color: #374151;
+            line-height: 1.625;
+            margin-bottom: 2rem;
+        }
+        .text-body p {
+            margin-bottom: 1rem;
+        }
+
+        /* 4. State they can get EVERYTHING for lowest possible price */
+        .offer-box {
+            background-color: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .offer-box { padding: 2rem; }
+        }
+
+        .offer-headline {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #166534;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+        }
+        @media (min-width: 768px) {
+            .offer-headline { font-size: 1.5rem; }
+        }
+
+        .offer-text {
+            text-align: center;
+            font-size: 1.125rem;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .offer-text span.line-through {
+            text-decoration: line-through;
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        .price-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .new-price {
+            font-size: 3.75rem;
+            font-weight: 900;
+            color: #16a34a;
+            display: block;
+            letter-spacing: -0.05em;
+            line-height: 1;
+        }
+        @media (min-width: 768px) {
+            .new-price { font-size: 4.5rem; }
+        }
+        .new-price-currency {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #16a34a;
+        }
+        .price-badge {
+            display: inline-block;
+            margin-top: 0.75rem;
+            background-color: #bbf7d0;
+            color: #14532d;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .benefits-list {
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+        .benefits-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .benefits-list span {
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        /* 5. Hotmart widget button container */
+        .checkout-section {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .checkout-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .hotmart-container {
+            width: 100%;
+        }
+
+        /* Footer info guarantees */
+        .footer-guarantee {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .footer-guarantee-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        .footer-guarantee-title p {
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .footer-guarantee-text {
+            color: #6b7280;
+            font-size: 0.75rem;
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Attention-grabbing header with pulsing animation -->
+    <div class="alert-bar">
+        <h1 class="alert-bar-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+            ¡ÚLTIMA OPORTUNIDAD! NO CIERRES ESTA PÁGINA
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+        </h1>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            
+            <!-- 2. Brief acknowledgment -->
+            <h2 class="headline">
+                Sabemos que recuperar el silencio que perdiste y volver a dormir sin ese ruido interminable es lo más importante para ti ahora mismo...
+            </h2>
+
+            <div class="divider"></div>
+
+            <!-- 3. Quick restatement of the core problem/benefit -->
+            <div class="text-body">
+                <p>
+                    La Frecuencia Da Vinci apaga el cortocircuito, pero si tus células cerebrales están deshidratadas, las ondas de sonido rebotan antes de llegar al nervio auditivo. Es como enviar una señal de radio a través de arena seca: se pierde en el camino.
+                </p>
+                <p>
+                    El <strong>Activador de Conductividad Neural</strong> resuelve exactamente eso con una receta matutina de treinta segundos, rehidratando tu tejido cerebral desde adentro y convirtiéndolo en un conductor acústico perfecto para que la frecuencia penetre al cien por ciento donde necesita llegar.
+                </p>
+            </div>
+
+            <!-- 4. State they can get EVERYTHING for lowest possible price -->
+            <div class="offer-box">
+                <h3 class="offer-headline">
+                    Acceso al precio mínimo absoluto
+                </h3>
+                
+                <p class="offer-text">
+                    No queremos que el dinero sea el motivo por el que la Frecuencia Da Vinci no te funcione al máximo. Por eso, en lugar de pagar <span class="line-through">$27.00</span>, puedes llevarte el Activador completo con todos los bonos por el precio más bajo que jamás ofreceremos:
+                </p>
+
+                <div class="price-container">
+                    <span class="new-price">
+                        $8.50<span class="new-price-currency"> USD</span>
+                    </span>
+                    <span class="price-badge">
+                        Pago único • Acceso Inmediato
+                    </span>
+                </div>
+
+                <!-- Benefit Checkmarks -->
+                <div class="benefits-list">
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span>Guía del Activador de Conductividad Neural, Mapa Semanal y Lista de Bloqueadores Silenciosos</span>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span>Todos los 3 bonos: Frecuencia de Restauración Profunda, Protocolo de Claridad Matutina y el bono secreto exclusivo del área de miembros</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5. Hotmart widget button container -->
+            <div class="checkout-section">
+                <p class="checkout-label">Elige una opção para continuar:</p>
+                
+                <!-- HOTMART - Sales Funnel Widget -->
+                <div class="hotmart-container">
+                    <div id="hotmart-sales-funnel"></div>
+
+                    <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+                    <script>
+                    if (typeof checkoutElements !== 'undefined') {
+                        checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                    } else {
+                        window.addEventListener('load', function() {
+                            checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+                        });
+                    }
+                    </script>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer info guarantees -->
+        <div class="footer-guarantee">
+            <div class="footer-guarantee-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                <p>Cero Riesgo: Garantía de 365 Días</p>
+            </div>
+            <p class="footer-guarantee-text">
+                Tu compra está 100% protegida. Esta garantía incondicional aplica íntegramente a esta oferta especial al precio mínimo. Si no estás satisfecho o no notas la diferencia, te devolvemos el dinero de todos tus productos sin hacer una sola pregunta y conservas el acceso total a todos los materiales para siempre.
+            </p>
+        </div>
+    </div>
+
+    <script>var PAGE_ID='downsell1b';</script>
+    <script src="../tracker.js"></script>
+</body>
+</html>
