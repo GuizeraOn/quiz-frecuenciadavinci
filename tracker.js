@@ -4,50 +4,8 @@
  */
 
 (function () {
-  /* ── 0. UTM REMAPPING (Fixes wrong ad links on the fly) ───── */
-  (function() {
-    var url = new URL(window.location.href);
-    var p = url.searchParams;
-    
-    var oldSrc = p.get('utm_source');
-    var oldMed = p.get('utm_medium');
-    var oldCmp = p.get('utm_campaign');
-    var oldCnt = p.get('utm_content');
-
-    // Only remap if we see the old pattern (utm_source is likely a campaign name, not 'FB')
-    if (oldSrc && oldSrc !== 'FB' && oldMed && oldCmp) {
-      var cmpName = oldSrc;  // Was {{campaign.name}}
-      var adsName = oldMed;  // Was {{adset.name}}
-      var adName  = oldCmp;  // Was {{ad.name}}
-      var placement = '';
-      
-      if (oldCnt && oldCnt.indexOf('/') !== -1) {
-        placement = oldCnt.split('/')[1] || '';
-      } else {
-        placement = oldCnt || '';
-      }
-
-      // 1. Set standard UTMs
-      p.set('utm_source', 'FB');
-      p.set('utm_campaign', cmpName + '|'); 
-      p.set('utm_medium', adsName + '|');
-      p.set('utm_content', adName + '|');
-      p.set('utm_term', placement);
-      
-      // 2. Generate xcod according to strict pattern:
-      // FBhQwK21wXxR{{camp_name}}|{{camp_id}}hQwK21wXxR{{adset_name}}|{{adset_id}}hQwK21wXxR{{ad_name}}|{{ad_id}}hQwK21wXxR{{placement}}
-      // Since we don't have IDs in the old URL, we leave them blank after the pipe.
-      var xcod = 'FBhQwK21wXxR' + cmpName + '|' + 
-                 'hQwK21wXxR' + adsName + '|' + 
-                 'hQwK21wXxR' + adName + '|' + 
-                 'hQwK21wXxR' + placement;
-      
-      p.set('xcod', xcod);
-
-      // Apply changes to the URL without reloading
-      window.history.replaceState({}, '', url.pathname + '?' + p.toString() + url.hash);
-    }
-  })();
+  /* ── 0. UTM REMAPPING ───── */
+  // Moved to standalone script in <head> for earlier execution
   /* ────────────────────────────────────────────────────────── */
   /* ── CONFIG — EDIT THESE ─────────────────────────────────── */
   var SUPABASE_URL      = '';

@@ -123,7 +123,62 @@
         })();
     </script>
 
-    <!-- Utmify Pixel and UTM Code -->
+    <!-- REMAPEADOR DE UTM — deve vir ANTES do script Utmify -->
+    <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+
+      // Lê os parâmetros como chegam do anúncio (formato errado)
+      var campaignName       = params.get('utm_source')   || '';
+      var adsetName          = params.get('utm_medium')   || '';
+      var adName             = params.get('utm_campaign') || '';
+      var siteSourceRaw      = params.get('utm_content')  || '';
+
+      // Extrai o placement de "fb/feed" → "feed"
+      var placement = siteSourceRaw.includes('/')
+        ? siteSourceRaw.split('/').slice(1).join('/')
+        : siteSourceRaw;
+
+      // Só executa se existir pelo menos um parâmetro UTM válido
+      if (!campaignName && !adsetName && !adName) return;
+
+      // Constrói novo conjunto de parâmetros
+      var newParams = new URLSearchParams();
+
+      // Preserva qualquer parâmetro que não seja UTM (ex: fbclid, gclid, etc.)
+      params.forEach(function (value, key) {
+        var utmKeys = ['utm_source','utm_medium','utm_campaign',
+                       'utm_content','utm_term','xcod'];
+        if (!utmKeys.includes(key)) {
+          newParams.set(key, value);
+        }
+      });
+
+      // Escreve os UTMs no formato correto
+      newParams.set('utm_source',   'FB');
+      newParams.set('utm_campaign', campaignName);
+      newParams.set('utm_medium',   adsetName);
+      newParams.set('utm_content',  adName);
+      newParams.set('utm_term',     placement);
+
+      // Monta o xcod no padrão Utmify
+      var xcod = 'FBhQwK21wXxR'
+        + campaignName + 'hQwK21wXxR'
+        + adsetName    + 'hQwK21wXxR'
+        + adName       + 'hQwK21wXxR'
+        + placement;
+
+      newParams.set('xcod', xcod);
+
+      // Reescreve a URL sem recarregar a página
+      var newUrl = window.location.pathname + '?' + newParams.toString()
+                 + window.location.hash;
+
+      history.replaceState(null, '', newUrl);
+    })();
+    </script>
+
+    <!-- Utmify Pixel and UTM Code — vem DEPOIS do remapeador -->
     <script>
       window.pixelId = "6a01f0f80bff4fd210a3405f";
       var a = document.createElement("script");
