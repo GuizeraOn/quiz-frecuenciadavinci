@@ -123,7 +123,7 @@
         })();
     </script>
 
-    <!-- Utmify Pixel Code -->
+    <!-- Utmify Pixel and UTM Code -->
     <script>
       window.pixelId = "6a01f0f80bff4fd210a3405f";
       var a = document.createElement("script");
@@ -132,7 +132,13 @@
       a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
       document.head.appendChild(a);
     </script>
-    <!-- End Utmify Pixel Code -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+    <!-- End Utmify Code -->
 
     <!-- Clarity Tracking Code -->
     <script type="text/javascript">
@@ -541,40 +547,6 @@
 
         </main>
 
-        <footer class="quiz-footer">
-            <!-- UTM Tracking Code -->
-            <script>
-                let prefix = ["https://payment.hotmart.com", "https://pay.hotmart.com"];
-
-                function getParams() {
-                    try {
-                        let r = new URL(window.top.location.href);
-                        let a = r.searchParams.get("utm_source") || "";
-                        let n = r.searchParams.get("utm_medium") || "";
-                        let o = r.searchParams.get("utm_campaign") || "";
-                        let m = r.searchParams.get("utm_term") || "";
-                        let c = r.searchParams.get("utm_content") || "";
-                        if (!a && !n && !o && !m && !c) return "";
-                        return "&sck=" + encodeURIComponent(a + "|" + n + "|" + o + "|" + m + "|" + c);
-                    } catch (_) {
-                        return "";
-                    }
-                }
-
-                !function () {
-                    var t = new URLSearchParams(window.location.search);
-                    if (!t.toString()) return;
-                    document.querySelectorAll("a").forEach(function (e) {
-                        for (let r = 0; r < prefix.length; r++) {
-                            if (e.href.indexOf(prefix[r]) !== -1) {
-                                let sep = e.href.indexOf("?") === -1 ? "?" : "&";
-                                e.href += sep + t.toString() + getParams();
-                                break; // evita duplo append
-                            }
-                        }
-                    });
-                }();
-            </script>
         </footer>
     </div>
 
