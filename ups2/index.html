@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paso 2 de 3 — Instrucción Vital</title>
-    <meta name="description" content="Instrucción vital para nuevos miembros del Protocolo de Reconstrucción Cognitiva.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Seguridad Avanzada - NervioZen</title>
+    <meta name="description" content="Desbloqueo de seguridad avanzada para tu acceso.">
+    <link rel="icon" type="image/webp" href="../favicon/favicon-96x96.webp" sizes="96x96">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <!-- REMAPEADOR DE UTM — deve vir ANTES do script Utmify -->
     <script>
@@ -80,251 +81,176 @@
       defer
     ></script>
     <!-- End Utmify Code -->
+    
     <style>
-        /* ── Reset ── */
-        *, *::before, *::after {
+        :root {
+            --bg: #F4F5F7;
+            --text: #0F172A;
+            --text-secondary: #4A4A4A;
+            --alert-bg: #CC1212;
+            --alert-text: #FFFFFF;
+            --accent-green: #10B981;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Top Warning Bar */
+        .top-bar {
+            background-color: var(--alert-bg);
+            color: var(--alert-text);
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        /* Container & Layout */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
         }
 
-        /* ── 1. Header — Progress Bar ── */
-        .header {
-            width: 100%;
-            padding: 0;
-        }
-
-        .progress-track {
-            width: 100%;
-            height: 5px;
-            background-color: rgba(255, 255, 255, 0.08);
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 80%;
-            background: linear-gradient(90deg, #00CCCC, #00FFFF);
-            border-radius: 0 3px 3px 0;
-            animation: shimmer 2.5s infinite ease-in-out;
-        }
-
-        @keyframes shimmer {
-            0%   { opacity: 0.85; }
-            50%  { opacity: 1; }
-            100% { opacity: 0.85; }
-        }
-
-        .step-label {
+        /* Headline */
+        .headline {
+            font-size: 24px;
+            font-weight: 900;
             text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.5);
-            padding: 12px 15px 0;
-            letter-spacing: 0.3px;
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+        
+        @media (min-width: 768px) {
+            .headline { font-size: 32px; }
         }
 
-        /* ── 2. Container ── */
-        .page-container {
+        .headline span {
+            color: var(--alert-bg);
+        }
+
+        /* Video Section */
+        .video-container {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: #000;
+            overflow: hidden;
+        }
+
+        @media (max-width: 480px) {
+            .video-container {
+                max-width: 100%;
+                border-radius: 8px;
+            }
+        }
+
+        /* Delay Section */
+        #delayed-offer-container {
+            display: none; /* Hidden strictly by default */
             width: 100%;
             max-width: 600px;
-            padding: 0 15px 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            animation: fadeIn 0.8s ease forwards;
         }
 
-        /* ── 3. Headline ── */
-        .urgency-headline {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Block B: Hotmart Widget Wrapper */
+        .hotmart-widget-container {
+            width: 100%;
             text-align: center;
-            font-size: 18px;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.45;
-            margin: 22px 0 24px;
-            animation: pulse-text 2s infinite ease-in-out;
-        }
-
-        @keyframes pulse-text {
-            0%   { opacity: 0.8; }
-            50%  { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
-
-        /* ── 4. Video Player ── */
-        .video-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        /* ── 5. CTA Container (hidden initially) ── */
-        #cta-container {
-            display: none;
-            width: 100%;
-            max-width: 500px;
-            margin-top: 40px;
-            animation: fadeSlideUp 1s ease forwards;
-        }
-
-        @keyframes fadeSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ── 6. Footer / Security Seals ── */
-        .security-footer {
-            width: 100%;
-            max-width: 500px;
-            margin-top: 50px;
-            padding: 25px 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            text-align: center;
-        }
-
-        .seals {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-
-        .seal-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.35);
-            font-weight: 500;
-        }
-
-        .seal-icon {
-            font-size: 16px;
-            opacity: 0.5;
-        }
-
-        .legal-links {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.25);
-            line-height: 1.8;
-        }
-
-        .legal-links a {
-            color: rgba(255, 255, 255, 0.35);
-            text-decoration: underline;
-            transition: color 0.2s ease;
-        }
-
-        .legal-links a:hover {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* ── Mobile (< 600px) ── */
-        @media (max-width: 600px) {
-            .urgency-headline {
-                padding: 0 15px;
-                font-size: 17px;
-            }
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Header — Progress Bar -->
-    <header class="header">
-        <div class="progress-track">
-            <div class="progress-fill"></div>
+    <!-- Header Alert -->
+    <div class="top-bar">
+        ⚠️ ¡ESPERA! Tu orden aún no está completa. No cierres ni actualices esta página.
+    </div>
+
+    <div class="container">
+        <!-- Pre-Headline -->
+        <div style="font-size: 12px; font-weight: 800; color: #64748B; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; text-align: center; border-bottom: 1px solid #CBD5E1; padding-bottom: 8px; width: max-content; margin-left: auto; margin-right: auto;">
+            PASO 3 DE 3: DESBLOQUEO DE SEGURIDAD... <span style="color: #10B981; font-size: 14px;">●</span>
         </div>
-        <p class="step-label">Paso 2 de 3: Instrucción vital para nuevos miembros</p>
-    </header>
 
-    <div class="page-container">
+        <!-- Headline -->
+        <div class="headline" style="max-width: 700px;">
+            <p style="color: #DC2626; margin-bottom: 10px;">🛑 ¡CASI LISTO! Tu acceso está al 99% completado.</p>
+            <p style="font-size: 0.85em; margin-bottom: 20px;">PÁGINA OCULTA: DESBLOQUEO DE SEGURIDAD AVANZADA... 🔒</p>
+            <p style="font-size: 16px; font-weight: 700; color: var(--text-secondary);">Esta es la única vez que verás este video. Por favor, mira las instrucciones finales antes de salir de esta página:</p>
+        </div>
 
-        <!-- 2. Urgency Headline -->
-        <h1 class="urgency-headline">
-            ⚠️ ATENCIÓN: No cierres esta página. Tu acceso se está procesando...
-        </h1>
-
-        <!-- 3. Video Player (VTurb) -->
-        <div class="video-wrapper">
+        <!-- Video Vturb -->
+        <div class="video-container">
             <vturb-smartplayer id="vid-6a033134d350624835c16e85" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
             <script type="text/javascript">
-                var s = document.createElement("script");
-                s.src = "https://scripts.converteai.net/2b63608a-cbd9-4a3a-a069-b9e191e486c4/players/6a033134d350624835c16e85/v4/player.js";
-                s.async = !0;
-                document.head.appendChild(s);
+                var s=document.createElement("script");
+                s.src="https://scripts.converteai.net/2b63608a-cbd9-4a3a-a069-b9e191e486c4/players/6a033134d350624835c16e85/v4/player.js";
+                s.async=!0;
+                document.head.appendChild(s); 
             </script>
         </div>
 
-        <!-- 4. CTA Container (Hotmart Widget — hidden until delay) -->
-        <div id="cta-container">
-            <!-- HOTMART - Sales Funnel Widget -->
-            <div id="hotmart-sales-funnel"></div>
-
-            <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
-            <script>
+        <!-- Delay Offer -->
+        <div id="delayed-offer-container">
+            <!-- Block B: Hotmart Upsell Widget -->
+            <div class="hotmart-widget-container" id="widget-tracker">
+                <!-- HOTMART - Sales Funnel Widget -->
+                <div id="hotmart-sales-funnel"></div>
+                
+                <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+                <script>
                 if (typeof checkoutElements !== 'undefined') {
                     checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
                 } else {
-                    window.addEventListener('load', function () {
+                    window.addEventListener('load', function() {
                         checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
                     });
                 }
-            </script>
-            <!-- END HOTMART -->
+                </script>
+                <!-- HOTMART - Sales Funnel Widget -->
+            </div>
         </div>
-
-        <!-- 5. Security Footer -->
-        <footer class="security-footer">
-            <div class="seals">
-                <span class="seal-item">
-                    <span class="seal-icon">🔒</span> Conexión cifrada SSL
-                </span>
-                <span class="seal-item">
-                    <span class="seal-icon">🛡️</span> Pago seguro Hotmart
-                </span>
-                <span class="seal-item">
-                    <span class="seal-icon">✅</span> Garantía de 30 días
-                </span>
-            </div>
-            <div class="legal-links">
-                <a href="#">Términos de Uso</a> &nbsp;|&nbsp; <a href="#">Política de Privacidad</a>
-            </div>
-        </footer>
-
     </div>
 
-    <!-- 6. Delay Script — Show CTA at 05:11 (311.015 seconds) -->
+    <!-- Script de Delay (05m11s15ms = 311.015 segundos) -->
     <script>
-        (function () {
-            var DELAY_SECONDS = 311.015; // 05m11s15ms
-            setTimeout(function () {
-                var cta = document.getElementById('cta-container');
-                if (cta) {
-                    cta.style.display = 'block';
+        const DELAY_IN_SECONDS = 311.015;
+        const DELAY_IN_MS = DELAY_IN_SECONDS * 1000;
 
-                    // Smooth scroll to the widget
-                    cta.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }, DELAY_SECONDS * 1000);
-        })();
+        setTimeout(function() {
+            var decisionZone = document.getElementById('delayed-offer-container');
+            if(decisionZone) {
+                decisionZone.style.display = 'block';
+            }
+        }, DELAY_IN_MS);
     </script>
     <script>var PAGE_ID='upsell2';</script>
     <script src="../tracker.js"></script>
